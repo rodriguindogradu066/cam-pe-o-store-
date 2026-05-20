@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos | Campeão Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="announcement-bar">
+  <div class="items">
+    <span>🚚 Frete grátis acima de <span class="gold">R$150</span></span>
+    <span>🔥 COPA: <span class="gold">20% OFF</span> em kits</span>
+    <span>⏱ Personalização em <span class="gold">24h</span></span>
+  </div>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">⚽</div>
+      <div class="logo-text">
+        <div class="name">CAMPEÃO STORE</div>
+        <div class="tagline">Personalizados de Futebol</div>
+      </div>
+    </a>
+    <div class="header-search">
+      <i class="fas fa-search search-icon"></i>
+      <input type="search" placeholder="Buscar produtos, times, personalizados...">
+    </div>
+    <div class="header-actions">
+      <a href="https://wa.me/5563992795579" target="_blank" class="header-btn whatsapp-btn">
+        <i class="fab fa-whatsapp icon"></i> <span>WhatsApp</span>
+      </a>
+      <button class="header-btn open-cart">
+        <i class="fas fa-shopping-cart icon"></i>
+        <span>Carrinho</span>
+        <span class="cart-count" style="display:none">0</span>
+      </button>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="nav-mobile">
+  <a href="index.html"><i class="fas fa-home icon"></i> Início</a>
+  <a href="produtos.html" class="active"><i class="fas fa-box icon"></i> Produtos</a>
+  <a href="produtos.html?sale=1" class="sale-link"><i class="fas fa-tag icon"></i> Promoções 🔥</a>
+</nav>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html"><i class="fas fa-home icon"></i> Início</a>
+    <a href="produtos.html?cat=canecas"><i class="fas fa-coffee icon"></i> Canecas</a>
+    <a href="produtos.html?cat=copos"><i class="fas fa-thermometer icon"></i> Copos Térmicos</a>
+    <a href="produtos.html?cat=futebol"><i class="fas fa-futbol icon"></i> Futebol</a>
+    <a href="produtos.html?cat=copa"><i class="fas fa-trophy icon"></i> Copa</a>
+    <a href="produtos.html?cat=presentes"><i class="fas fa-gift icon"></i> Presentes</a>
+    <a href="produtos.html?cat=personalizados"><i class="fas fa-magic icon"></i> Personalizados</a>
+    <a href="produtos.html?sale=1" class="sale-link"><i class="fas fa-fire icon"></i> Promoções 🔥</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <h1>🏆 Todos os Produtos</h1>
+    <p>Produtos personalizados com temática de futebol para torcedores apaixonados</p>
+    <div class="breadcrumb">
+      <a href="index.html">Início</a>
+      <span>/</span>
+      <span class="current">Produtos</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="products-layout">
+
+    <!-- FILTERS SIDEBAR -->
+    <aside class="filters-panel">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+        <h3 style="font-size:1rem">Filtros</h3>
+        <button style="font-size:.8rem;color:var(--green);font-weight:700">Limpar tudo</button>
+      </div>
+
+      <div class="filter-group">
+        <h4>Categoria</h4>
+        <label class="filter-option"><input type="checkbox" checked><label>Canecas <span class="count">(12)</span></label></label>
+        <label class="filter-option"><input type="checkbox"><label>Copos Térmicos <span class="count">(8)</span></label></label>
+        <label class="filter-option"><input type="checkbox"><label>Taças & Troféus <span class="count">(6)</span></label></label>
+        <label class="filter-option"><input type="checkbox"><label>Squeezes <span class="count">(5)</span></label></label>
+        <label class="filter-option"><input type="checkbox"><label>Kits Presentes <span class="count">(9)</span></label></label>
+        <label class="filter-option"><input type="checkbox"><label>Edição Copa <span class="count">(7)</span></label></label>
+      </div>
+
+      <div class="filter-group">
+        <h4>Faixa de Preço</h4>
+        <div class="price-range">
+          <input type="number" placeholder="R$ Mín" value="0">
+          <span>–</span>
+          <input type="number" placeholder="R$ Máx" value="300">
+        </div>
+        <button class="btn btn-outline btn-sm btn-block" style="margin-top:10px">Aplicar</button>
+      </div>
+
+      <div class="filter-group">
+        <h4>Avaliação</h4>
+        <label class="filter-option"><input type="checkbox"><label>★★★★★ (5 estrelas)</label></label>
+        <label class="filter-option"><input type="checkbox"><label>★★★★☆ (4+ estrelas)</label></label>
+        <label class="filter-option"><input type="checkbox"><label>★★★☆☆ (3+ estrelas)</label></label>
+      </div>
+
+      <div class="filter-group">
+        <h4>Destaque</h4>
+        <label class="filter-option"><input type="checkbox"><label>Em Promoção</label></label>
+        <label class="filter-option"><input type="checkbox"><label>Mais Vendidos</label></label>
+        <label class="filter-option"><input type="checkbox"><label>Novidades</label></label>
+        <label class="filter-option"><input type="checkbox"><label>Copa 2026</label></label>
+      </div>
+
+      <div style="background:#e8f5e9;border-radius:var(--radius);padding:16px;text-align:center;margin-top:8px">
+        <div style="font-size:1.5rem;margin-bottom:8px">📦</div>
+        <div style="font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--green-dark);margin-bottom:4px">Frete Grátis!</div>
+        <div style="font-size:.78rem;color:var(--text-muted)">Em pedidos acima de R$150</div>
+      </div>
+    </aside>
+
+    <!-- PRODUCTS GRID -->
+    <div class="products-content">
+      <div class="products-toolbar">
+        <div class="products-count">Exibindo <strong>8</strong> de 47 produtos</div>
+        <select class="sort-select">
+          <option>Mais relevantes</option>
+          <option>Menor preço</option>
+          <option>Maior preço</option>
+          <option>Mais vendidos</option>
+          <option>Novidades</option>
+          <option>Melhor avaliação</option>
+        </select>
+      </div>
+
+      <div class="active-filters">
+        <div class="filter-tag">Canecas <button onclick="this.closest('.filter-tag').remove()"><i class="fas fa-times"></i></button></div>
+        <div class="filter-tag">Em Promoção <button onclick="this.closest('.filter-tag').remove()"><i class="fas fa-times"></i></button></div>
+      </div>
+
+      <div class="products-grid" style="grid-template-columns:repeat(3,1fr)">
+
+        <div class="product-card">
+          <a href="produto.html?id=1">
+            <div class="product-img">
+              <div class="product-img-bg bg-caneca">☕</div>
+              <div class="product-badges">
+                <span class="badge badge-red">-33% OFF</span>
+                <span class="badge badge-dark">🔥 Hot</span>
+              </div>
+            </div>
+          </a>
+          <div class="product-info">
+            <div class="product-name">Caneca Porcelana Personalizada 325ml</div>
+            <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(247)</span></div>
+            <div class="product-pricing">
+              <span class="price-old">R$ 59,90</span>
+              <span class="price-current">R$ 39,90</span>
+              <span class="price-installment">3x de <strong>R$ 13,30</strong></span>
+            </div>
+            <button class="btn btn-primary" onclick="addToCart({id:'p1',name:'Caneca Porcelana Personalizada',price:39.90,emoji:'☕',bgClass:'bg-caneca',custom:{}})"><i class="fas fa-shopping-cart"></i> Personalizar</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="produto.html?id=2">
+            <div class="product-img">
+              <div class="product-img-bg bg-copo">🥤</div>
+              <div class="product-badges"><span class="badge badge-gold">⭐ Top</span></div>
+            </div>
+          </a>
+          <div class="product-info">
+            <div class="product-name">Copo Térmico Estilo Stanley 473ml</div>
+            <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(189)</span></div>
+            <div class="product-pricing">
+              <span class="price-old">R$ 129,90</span>
+              <span class="price-current">R$ 89,90</span>
+              <span class="price-installment">3x de <strong>R$ 29,97</strong></span>
+            </div>
+            <button class="btn btn-primary" onclick="addToCart({id:'p2',name:'Copo Térmico Stanley 473ml',price:89.90,emoji:'🥤',bgClass:'bg-copo',custom:{}})"><i class="fas fa-shopping-cart"></i> Personalizar</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="produto.html?id=3">
+            <div class="product-img">
+              <div class="product-img-bg bg-taca">🏆</div>
+              <div class="product-badges"><span class="badge badge-green">Copa 2026</span></div>
+            </div>
+          </a>
+          <div class="product-info">
+            <div class="product-name">Taça Personalizada Copa 500ml</div>
+            <div class="product-rating"><span class="stars">★★★★☆</span><span class="rating-count">(93)</span></div>
+            <div class="product-pricing">
+              <span class="price-old">R$ 79,90</span>
+              <span class="price-current">R$ 49,90</span>
+            </div>
+            <button class="btn btn-primary" onclick="addToCart({id:'p3',name:'Taça Personalizada Copa',price:49.90,emoji:'🏆',bgClass:'bg-taca',custom:{}})"><i class="fas fa-shopping-cart"></i> Personalizar</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="produto.html?id=4">
+            <div class="product-img">
+              <div class="product-img-bg bg-kit">🎁</div>
+              <div class="product-badges"><span class="badge badge-red">Mais vendido</span></div>
+            </div>
+          </a>
+          <div class="product-info">
+            <div class="product-name">Kit Torcedor Completo — 2 Itens</div>
+            <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(312)</span></div>
+            <div class="product-pricing">
+              <span class="price-old">R$ 199,90</span>
+              <span class="price-current">R$ 149,90</span>
+              <span class="price-installment">6x de <strong>R$ 24,98</strong></span>
+            </div>
+            <button class="btn btn-gold" onclick="addToCart({id:'p4',name:'Kit Torcedor Completo',price:149.90,emoji:'🎁',bgClass:'bg-kit',custom:{}})"><i class="fas fa-shopping-cart"></i> Personalizar</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="produto.html?id=5">
+            <div class="product-img">
+              <div class="product-img-bg bg-magica">✨</div>
+              <div class="product-badges"><span class="badge badge-red">Viral!</span></div>
+            </div>
+          </a>
+          <div class="product-info">
+            <div class="product-name">Caneca Mágica — Muda de Cor</div>
+            <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(156)</span></div>
+            <div class="product-pricing">
+              <span class="price-old">R$ 69,90</span>
+              <span class="price-current">R$ 44,90</span>
+            </div>
+            <button class="btn btn-primary" onclick="addToCart({id:'p5',name:'Caneca Mágica',price:44.90,emoji:'✨',bgClass:'bg-magica',custom:{}})"><i class="fas fa-shopping-cart"></i> Personalizar</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="produto.html?id=6">
+            <div class="product-img">
+              <div class="product-img-bg bg-garrafa">💧</div>
+              <div class="product-badges"><span class="badge badge-green">Novo</span></div>
+            </div>
+          </a>
+          <div class="product-info">
+            <div class="product-name">Garrafa Térmica 1 Litro</div>
+            <div class="product-rating"><span class="stars">★★★★☆</span><span class="rating-count">(78)</span></div>
+            <div class="product-pricing">
+              <span class="price-old">R$ 109,90</span>
+              <span class="price-current">R$ 79,90</span>
+            </div>
+            <button class="btn btn-primary" onclick="addToCart({id:'p6',name:'Garrafa Térmica 1L',price:79.90,emoji:'💧',bgClass:'bg-garrafa',custom:{}})"><i class="fas fa-shopping-cart"></i> Personalizar</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="produto.html?id=7">
+            <div class="product-img">
+              <div class="product-img-bg bg-squeeze">🍶</div>
+              <div class="product-badges"><span class="badge badge-gold">Popular</span></div>
+            </div>
+          </a>
+          <div class="product-info">
+            <div class="product-name">Squeeze Esportivo 700ml</div>
+            <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(201)</span></div>
+            <div class="product-pricing">
+              <span class="price-old">R$ 49,90</span>
+              <span class="price-current">R$ 34,90</span>
+            </div>
+            <button class="btn btn-primary" onclick="addToCart({id:'p7',name:'Squeeze Esportivo 700ml',price:34.90,emoji:'🍶',bgClass:'bg-squeeze',custom:{}})"><i class="fas fa-shopping-cart"></i> Personalizar</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="produto.html?id=8">
+            <div class="product-img">
+              <div class="product-img-bg bg-premium" style="font-size:3.5rem;flex-direction:column;gap:4px"><span>🏆</span><span>⚽</span></div>
+              <div class="product-badges">
+                <span class="badge badge-gold">Premium</span>
+                <span class="badge badge-red">-29%</span>
+              </div>
+            </div>
+          </a>
+          <div class="product-info">
+            <div class="product-name">Kit Premium Copa 2026 — 4 Itens</div>
+            <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(44)</span></div>
+            <div class="product-pricing">
+              <span class="price-old">R$ 279,90</span>
+              <span class="price-current">R$ 199,90</span>
+              <span class="price-installment">12x de <strong>R$ 16,66</strong></span>
+            </div>
+            <button class="btn btn-gold" onclick="addToCart({id:'p8',name:'Kit Premium Copa 2026',price:199.90,emoji:'🏆',bgClass:'bg-premium',custom:{}})"><i class="fas fa-shopping-cart"></i> Montar Kit</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pagination -->
+      <div style="display:flex;justify-content:center;gap:8px;margin-top:48px">
+        <button class="btn btn-primary" style="padding:10px 16px">1</button>
+        <button class="btn btn-outline" style="padding:10px 16px">2</button>
+        <button class="btn btn-outline" style="padding:10px 16px">3</button>
+        <button class="btn btn-outline" style="padding:10px 16px"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer" style="margin-top:80px">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2026 Campeão Store. Todos os direitos reservados.</p>
+      <div class="payment-methods">
+        <span class="payment-badge">PIX</span>
+        <span class="payment-badge">Visa</span>
+        <span class="payment-badge">Master</span>
+        <span class="payment-badge">Boleto</span>
+      </div>
+      <div class="secured"><i class="fas fa-lock"></i> Site 100% Seguro</div>
+    </div>
+  </div>
+</footer>
+
+<div class="whatsapp-float" id="wa-float">
+  <div class="wa-options" id="wa-options">
+    <a href="https://wa.me/5563992795579?text=Ola! Vim do site Campeao Store e preciso de ajuda" target="_blank" class="wa-option-link">
+      <i class="fab fa-whatsapp"></i>
+      <div><div class="wa-opt-title">Suporte 1</div><div class="wa-opt-num">+55 (63) 99279-5579</div></div>
+    </a>
+    <a href="https://wa.me/5563991227871?text=Ola! Vim do site Campeao Store e preciso de ajuda" target="_blank" class="wa-option-link">
+      <i class="fab fa-whatsapp"></i>
+      <div><div class="wa-opt-title">Suporte 2</div><div class="wa-opt-num">+55 (63) 99122-7871</div></div>
+    </a>
+  </div>
+  <div class="whatsapp-pulse"></div>
+  <button class="wa-main-btn" onclick="toggleWA()">
+    <i class="fab fa-whatsapp"></i>
+    <span>Fale conosco!</span>
+  </button>
+</div>  <a href="https://wa.me/5563992795579" target="_blank">
+    <i class="fab fa-whatsapp"></i><span>Fale conosco!</span>
+  </a>
+</div>
+
+<div class="cart-overlay"></div>
+<div class="cart-sidebar">
+  <div class="cart-sidebar-header">
+    <h3>🛒 Meu Carrinho</h3>
+    <button class="close-cart"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-sidebar-items"></div>
+  <div class="cart-sidebar-footer">
+    <div class="cart-total-line"><span>Total:</span><strong>R$ 0,00</strong></div>
+    <div class="pix-note"><i class="fas fa-bolt"></i> PIX com <strong>10% OFF</strong> extra!</div>
+    <a href="carrinho.html" class="btn btn-outline btn-block" style="margin-bottom:10px">Ver Carrinho</a>
+    <a href="checkout.html" class="btn btn-primary btn-block">Finalizar Compra <i class="fas fa-arrow-right"></i></a>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

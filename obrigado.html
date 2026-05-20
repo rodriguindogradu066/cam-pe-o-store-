@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedido Confirmado! | Campeão Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .confetti-wrap { position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden; }
+    .confetti-piece {
+      position:absolute; width:10px; height:10px; top:-20px;
+      animation: confettiFall linear forwards;
+    }
+    @keyframes confettiFall {
+      to { transform: translateY(110vh) rotate(720deg); }
+    }
+    .success-icon {
+      width:100px; height:100px; border-radius:50%;
+      background:linear-gradient(135deg,var(--green),var(--green-light));
+      display:flex; align-items:center; justify-content:center;
+      margin:0 auto 24px; font-size:2.5rem; color:#fff;
+      animation: popIn .5s cubic-bezier(.175,.885,.32,1.275) both;
+      box-shadow:0 0 0 12px rgba(0,153,77,.15);
+    }
+    @keyframes popIn {
+      0% { transform:scale(0); opacity:0; }
+      100% { transform:scale(1); opacity:1; }
+    }
+    .order-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border-radius:var(--radius); overflow:hidden; margin:32px 0; }
+    .order-step { background:var(--white); padding:20px 16px; text-align:center; }
+    .order-step .step-icon-wrap {
+      width:48px; height:48px; border-radius:50%; margin:0 auto 12px;
+      display:flex; align-items:center; justify-content:center; font-size:1.3rem;
+    }
+    .order-step .step-title { font-family:var(--font-head); font-weight:700; font-size:.82rem; margin-bottom:4px; }
+    .order-step .step-desc { font-size:.75rem; color:var(--text-muted); line-height:1.4; }
+    .order-step.done .step-icon-wrap { background:#e8f5e9; }
+    .order-step.active .step-icon-wrap { background:#e3f2fd; }
+    .order-step.pending .step-icon-wrap { background:var(--bg); }
+  </style>
+</head>
+<body>
+
+<!-- CONFETTI -->
+<div class="confetti-wrap" id="confetti"></div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">⚽</div>
+      <div class="logo-text">
+        <div class="name">CAMPEÃO STORE</div>
+        <div class="tagline">Personalizados de Futebol</div>
+      </div>
+    </a>
+    <div></div>
+    <div class="header-actions">
+      <a href="https://wa.me/5563992795579" target="_blank" class="header-btn whatsapp-btn">
+        <i class="fab fa-whatsapp icon"></i> <span>Suporte</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div style="min-height:80vh;display:flex;align-items:center;padding:60px 0;background:linear-gradient(180deg,#f0fff7 0%,var(--bg) 100%)">
+  <div class="container">
+    <div style="max-width:700px;margin:0 auto;text-align:center">
+
+      <div class="success-icon">
+        <i class="fas fa-check"></i>
+      </div>
+
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,153,77,.1);border:1px solid rgba(0,153,77,.2);border-radius:50px;padding:6px 16px;font-size:.8rem;color:var(--green);font-weight:700;font-family:var(--font-head);margin-bottom:16px">
+        <i class="fas fa-check-circle"></i> PEDIDO CONFIRMADO
+      </div>
+
+      <h1 style="font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:12px">
+        Uhul, <span class="obrigado-nome" style="color:var(--green)">torcedor</span>! Pedido recebido! 🎉
+      </h1>
+      <p style="color:var(--text-muted);font-size:1.05rem;margin-bottom:8px">
+        Obrigado pela sua compra! Já estamos preparando seu produto personalizado com todo carinho.
+      </p>
+
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;margin:32px 0;box-shadow:var(--shadow-sm)">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)">
+          <div>
+            <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:4px">Número do pedido</div>
+            <div style="font-family:var(--font-head);font-weight:900;font-size:1.3rem;color:var(--green)" id="order-num">#CS-00000</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:4px">Data do pedido</div>
+            <div style="font-family:var(--font-head);font-weight:700;font-size:.9rem" id="order-date">—</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:4px">Status</div>
+            <span class="badge badge-green" style="font-size:.75rem;padding:4px 12px">
+              <i class="fas fa-clock"></i> Em produção
+            </span>
+          </div>
+        </div>
+
+        <!-- Itens do pedido preenchidos pelo JS -->
+        <div id="confirmed-items" style="text-align:left;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)"></div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <span style="font-size:.85rem;color:var(--text-muted)">Total do pedido:</span>
+          <strong id="confirmed-total" style="font-family:var(--font-head);font-size:1.1rem;color:var(--green)">—</strong>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left;margin-top:16px">
+          <div>
+            <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">Entrega</div>
+            <div style="font-size:.9rem;font-weight:600">Previsão: 5–8 dias úteis</div>
+            <div style="font-size:.8rem;color:var(--text-muted);margin-top:4px">PAC — Correios</div>
+          </div>
+          <div>
+            <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">Personalização</div>
+            <div style="font-size:.9rem;font-weight:600">Aprovação em até 24h</div>
+            <div style="font-size:.8rem;color:var(--text-muted);margin-top:4px">Você receberá um preview por e-mail</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDER TIMELINE -->
+      <div class="order-steps">
+        <div class="order-step done">
+          <div class="step-icon-wrap"><i class="fas fa-check" style="color:var(--green)"></i></div>
+          <div class="step-title">Pedido Recebido</div>
+          <div class="step-desc">Confirmado agora</div>
+        </div>
+        <div class="order-step active">
+          <div class="step-icon-wrap"><i class="fas fa-magic" style="color:#1e88e5"></i></div>
+          <div class="step-title">Em Produção</div>
+          <div class="step-desc">Até 24–48h</div>
+        </div>
+        <div class="order-step pending">
+          <div class="step-icon-wrap"><i class="fas fa-box" style="color:var(--text-muted)"></i></div>
+          <div class="step-title">Enviado</div>
+          <div class="step-desc">Código de rastreio</div>
+        </div>
+        <div class="order-step pending">
+          <div class="step-icon-wrap"><i class="fas fa-home" style="color:var(--text-muted)"></i></div>
+          <div class="step-title">Entregue</div>
+          <div class="step-desc">Na sua porta!</div>
+        </div>
+      </div>
+
+      <!-- WHAT'S NEXT -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;margin-bottom:32px;text-align:left;box-shadow:var(--shadow-sm)">
+        <h3 style="margin-bottom:20px;text-align:center">📋 Próximos passos</h3>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0">1</div>
+            <div>
+              <div style="font-weight:700;margin-bottom:4px">Confirmação por e-mail</div>
+              <div style="font-size:.85rem;color:var(--text-muted)">Você receberá um e-mail com todos os detalhes do pedido em alguns minutos.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:50%;background:#1e88e5;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0">2</div>
+            <div>
+              <div style="font-weight:700;margin-bottom:4px">Aprovação do layout</div>
+              <div style="font-size:.85rem;color:var(--text-muted)">Em até 24h, enviaremos um preview da personalização para você aprovar antes de produzir.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--dark);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0">3</div>
+            <div>
+              <div style="font-weight:700;margin-bottom:4px">Produção e envio</div>
+              <div style="font-size:.85rem;color:var(--text-muted)">Após aprovação, produzimos em até 48h e enviamos com código de rastreio.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA BUTTONS -->
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px">
+        <a href="https://wa.me/5563992795579" target="_blank" class="btn btn-primary btn-lg track-whatsapp">
+          <i class="fab fa-whatsapp"></i> Acompanhar pelo WhatsApp
+        </a>
+        <a href="produtos.html" class="btn btn-outline btn-lg">
+          <i class="fas fa-shopping-bag"></i> Continuar Comprando
+        </a>
+      </div>
+      <div style="text-align:center;margin-bottom:32px">
+        <span style="font-size:.78rem;color:var(--text-muted)">Ou fale com o Suporte 2: </span>
+        <a href="https://wa.me/5563991227871" target="_blank" class="track-whatsapp-2" style="color:var(--green);font-size:.78rem;font-weight:700">
+          <i class="fab fa-whatsapp"></i> +55 (63) 99122-7871
+        </a>
+      </div>
+
+      <!-- SOCIAL SHARE -->
+      <div style="background:linear-gradient(135deg,var(--dark),#0d2818);border-radius:var(--radius-lg);padding:28px;color:var(--white);margin-bottom:40px">
+        <div style="font-size:1.5rem;margin-bottom:8px">📸</div>
+        <h3 style="color:var(--white);margin-bottom:8px">Compartilhe sua compra!</h3>
+        <p style="color:rgba(255,255,255,.7);font-size:.9rem;margin-bottom:20px">
+          Marque a gente nas redes sociais quando receber seu produto. Compartilhe o amor pelo futebol! ⚽
+        </p>
+        <div style="display:flex;gap:10px;justify-content:center">
+          <a href="https://www.instagram.com/" target="_blank" class="btn btn-sm" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff">
+            <i class="fab fa-instagram"></i> @campeaostore
+          </a>
+          <a href="https://www.facebook.com/" target="_blank" class="btn btn-sm" style="background:#1877f2;color:#fff">
+            <i class="fab fa-facebook-f"></i> Facebook
+          </a>
+          <a href="https://wa.me/?text=Acabei de comprar na Campeão Store! Produtos personalizados de futebol incríveis 🏆⚽" target="_blank" class="btn btn-sm" style="background:#25d366;color:#fff">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SUGGESTED PRODUCTS -->
+<div style="background:var(--white);padding:60px 0">
+  <div class="container">
+    <div class="section-title">
+      <span class="label">Aproveite e adicione mais</span>
+      <h2>Você também vai <span>amar</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <a href="produto.html?id=5"><div class="product-img"><div class="product-img-bg bg-magica">✨</div><div class="product-badges"><span class="badge badge-red">Viral!</span></div></div></a>
+        <div class="product-info">
+          <div class="product-name">Caneca Mágica Muda de Cor</div>
+          <div class="product-pricing"><span class="price-old">R$ 69,90</span><span class="price-current">R$ 44,90</span></div>
+          <a href="produto.html?id=5" class="btn btn-primary"><i class="fas fa-magic"></i> Personalizar</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="produto.html?id=2"><div class="product-img"><div class="product-img-bg bg-copo">🥤</div><div class="product-badges"><span class="badge badge-gold">Top</span></div></div></a>
+        <div class="product-info">
+          <div class="product-name">Copo Térmico Stanley 473ml</div>
+          <div class="product-pricing"><span class="price-old">R$ 129,90</span><span class="price-current">R$ 89,90</span></div>
+          <a href="produto.html?id=2" class="btn btn-primary"><i class="fas fa-magic"></i> Personalizar</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="produto.html?id=8"><div class="product-img"><div class="product-img-bg bg-premium" style="font-size:3.5rem;flex-direction:column;gap:4px"><span>🏆</span><span>⚽</span></div><div class="product-badges"><span class="badge badge-gold">Premium</span></div></div></a>
+        <div class="product-info">
+          <div class="product-name">Kit Premium Copa 2026 — 4 Itens</div>
+          <div class="product-pricing"><span class="price-old">R$ 279,90</span><span class="price-current">R$ 199,90</span></div>
+          <a href="produto.html?id=8" class="btn btn-gold"><i class="fas fa-gift"></i> Ver Kit</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="produto.html?id=3"><div class="product-img"><div class="product-img-bg bg-taca">🏆</div><div class="product-badges"><span class="badge badge-green">Copa</span></div></div></a>
+        <div class="product-info">
+          <div class="product-name">Taça Personalizada Copa 500ml</div>
+          <div class="product-pricing"><span class="price-old">R$ 79,90</span><span class="price-current">R$ 49,90</span></div>
+          <a href="produto.html?id=3" class="btn btn-primary"><i class="fas fa-magic"></i> Personalizar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2026 Campeão Store. Todos os direitos reservados.</p>
+      <div class="payment-methods">
+        <span class="payment-badge">PIX</span>
+        <span class="payment-badge">Visa</span>
+        <span class="payment-badge">Master</span>
+        <span class="payment-badge">Boleto</span>
+      </div>
+      <div class="secured"><i class="fas fa-lock"></i> Site 100% Seguro</div>
+    </div>
+  </div>
+</footer>
+
+<div class="whatsapp-float" id="wa-float">
+  <div class="wa-options" id="wa-options">
+    <a href="https://wa.me/5563992795579" target="_blank" class="wa-option-link track-whatsapp">
+      <i class="fab fa-whatsapp"></i>
+      <div><div class="wa-opt-title">Suporte 1</div><div class="wa-opt-num">+55 (63) 99279-5579</div></div>
+    </a>
+    <a href="https://wa.me/5563991227871" target="_blank" class="wa-option-link track-whatsapp-2">
+      <i class="fab fa-whatsapp"></i>
+      <div><div class="wa-opt-title">Suporte 2</div><div class="wa-opt-num">+55 (63) 99122-7871</div></div>
+    </a>
+  </div>
+  <div class="whatsapp-pulse"></div>
+  <button class="wa-main-btn" onclick="toggleWA()">
+    <i class="fab fa-whatsapp"></i>
+    <span>Acompanhar pedido</span>
+  </button>
+</div>
+
+<script>
+// Confetti (número do pedido e dados são preenchidos pelo app.js → initObrigado)
+
+// Confetti
+function spawnConfetti() {
+  const colors = ['#006633','#FFD700','#CC0000','#fff','#00994d','#e6c200'];
+  const shapes = ['circle','square'];
+  const container = document.getElementById('confetti');
+  for (let i = 0; i < 80; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+    const size = 6 + Math.random() * 8;
+    piece.style.cssText = `
+      left:${Math.random()*100}%;
+      width:${size}px; height:${size}px;
+      background:${color};
+      border-radius:${shape==='circle'?'50%':'2px'};
+      animation-duration:${2+Math.random()*3}s;
+      animation-delay:${Math.random()*2}s;
+      opacity:${0.7+Math.random()*0.3};
+    `;
+    container.appendChild(piece);
+    setTimeout(() => piece.remove(), 5000);
+  }
+}
+spawnConfetti();
+setTimeout(spawnConfetti, 1500);
+</script>
+<script src="js/app.js"></script>
+</body>
+</html>

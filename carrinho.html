@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho | Campeão Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="announcement-bar">
+  <div class="items">
+    <span>🚚 Frete grátis acima de <span class="gold">R$150</span></span>
+    <span>🔒 Pagamento <span class="gold">100% seguro</span></span>
+  </div>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">⚽</div>
+      <div class="logo-text">
+        <div class="name">CAMPEÃO STORE</div>
+        <div class="tagline">Personalizados de Futebol</div>
+      </div>
+    </a>
+    <div class="header-search">
+      <i class="fas fa-search search-icon"></i>
+      <input type="search" placeholder="Buscar produtos...">
+    </div>
+    <div class="header-actions">
+      <a href="https://wa.me/5563992795579" target="_blank" class="header-btn whatsapp-btn">
+        <i class="fab fa-whatsapp icon"></i> <span>WhatsApp</span>
+      </a>
+      <button class="header-btn open-cart">
+        <i class="fas fa-shopping-cart icon"></i>
+        <span>Carrinho</span>
+        <span class="cart-count" style="display:none">0</span>
+      </button>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html"><i class="fas fa-home icon"></i> Início</a>
+    <a href="produtos.html?cat=canecas"><i class="fas fa-coffee icon"></i> Canecas</a>
+    <a href="produtos.html?cat=copos"><i class="fas fa-thermometer icon"></i> Copos Térmicos</a>
+    <a href="produtos.html?cat=futebol"><i class="fas fa-futbol icon"></i> Futebol</a>
+    <a href="produtos.html?cat=copa"><i class="fas fa-trophy icon"></i> Copa</a>
+    <a href="produtos.html?cat=presentes"><i class="fas fa-gift icon"></i> Presentes</a>
+    <a href="produtos.html?sale=1" class="sale-link"><i class="fas fa-fire icon"></i> Promoções 🔥</a>
+  </div>
+</nav>
+
+<div class="page-hero" style="padding:32px 0">
+  <div class="container">
+    <h1>🛒 Meu Carrinho</h1>
+    <div class="breadcrumb" style="justify-content:center;margin-top:8px">
+      <a href="index.html">Início</a><span>/</span>
+      <span class="current">Carrinho</span>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT STEPS -->
+<div style="background:var(--white);border-bottom:1px solid var(--border);padding:20px 0">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:center;gap:0;max-width:500px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:8px;color:var(--green);font-family:var(--font-head);font-size:.85rem;font-weight:700">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem">1</div>
+        Carrinho
+      </div>
+      <div style="flex:1;height:2px;background:var(--border);margin:0 12px"></div>
+      <div style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-family:var(--font-head);font-size:.85rem;font-weight:700">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--border);color:var(--text-muted);display:flex;align-items:center;justify-content:center;font-size:.8rem">2</div>
+        Entrega
+      </div>
+      <div style="flex:1;height:2px;background:var(--border);margin:0 12px"></div>
+      <div style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-family:var(--font-head);font-size:.85rem;font-weight:700">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--border);color:var(--text-muted);display:flex;align-items:center;justify-content:center;font-size:.8rem">3</div>
+        Pagamento
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cart-page">
+  <div class="container">
+
+    <!-- EMPTY STATE -->
+    <div class="cart-empty-state" style="display:none;text-align:center;padding:80px 20px">
+      <div style="font-size:4rem;margin-bottom:20px">🛒</div>
+      <h2 style="margin-bottom:12px">Seu carrinho está vazio</h2>
+      <p style="color:var(--text-muted);margin-bottom:32px">Adicione produtos incríveis e personalize para o torcedor que você ama!</p>
+      <a href="produtos.html" class="btn btn-primary btn-lg"><i class="fas fa-shopping-bag"></i> Ver Produtos</a>
+    </div>
+
+    <div class="cart-layout">
+
+      <!-- CART ITEMS -->
+      <div>
+        <div class="cart-table">
+          <div class="cart-header-row">
+            <span>Produto</span>
+            <span>Preço</span>
+            <span>Quantidade</span>
+            <span>Subtotal</span>
+            <span></span>
+          </div>
+          <div class="cart-items-body">
+            <!-- Rendered by JS -->
+            <div style="padding:48px;text-align:center;color:var(--text-muted)">
+              <div style="font-size:2rem;margin-bottom:12px">⏳</div>
+              <p>Carregando carrinho...</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;flex-wrap:wrap;gap:12px">
+          <a href="produtos.html" class="btn btn-outline">
+            <i class="fas fa-arrow-left"></i> Continuar Comprando
+          </a>
+          <button onclick="if(confirm('Limpar todo o carrinho?')){localStorage.removeItem('campeao_cart');updateCartUI();renderCartPage();}" class="btn btn-outline" style="color:var(--red);border-color:var(--red)">
+            <i class="fas fa-trash"></i> Limpar Carrinho
+          </button>
+        </div>
+
+        <!-- TRUST BADGES -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center">
+            <i class="fas fa-lock" style="color:var(--green);font-size:1.5rem;margin-bottom:8px;display:block"></i>
+            <div style="font-family:var(--font-head);font-weight:700;font-size:.85rem">Compra 100% Segura</div>
+            <div style="font-size:.75rem;color:var(--text-muted)">SSL 256-bit encriptado</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center">
+            <i class="fas fa-undo" style="color:var(--green);font-size:1.5rem;margin-bottom:8px;display:block"></i>
+            <div style="font-family:var(--font-head);font-weight:700;font-size:.85rem">Troca em 7 dias</div>
+            <div style="font-size:.75rem;color:var(--text-muted)">Sem burocracia</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center">
+            <i class="fas fa-truck" style="color:var(--green);font-size:1.5rem;margin-bottom:8px;display:block"></i>
+            <div style="font-family:var(--font-head);font-weight:700;font-size:.85rem">Frete Rápido</div>
+            <div style="font-size:.75rem;color:var(--text-muted)">Para todo o Brasil</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDER SUMMARY -->
+      <div class="cart-summary">
+        <h3>Resumo do Pedido</h3>
+
+        <div class="summary-line">
+          <span>Subtotal</span>
+          <span class="summary-subtotal">R$ 0,00</span>
+        </div>
+        <div class="summary-line">
+          <span>Frete</span>
+          <span class="summary-shipping green">—</span>
+        </div>
+        <div class="summary-line">
+          <span>Desconto</span>
+          <span style="color:var(--red)">— R$ 0,00</span>
+        </div>
+        <div class="summary-line total">
+          <span>Total</span>
+          <span class="summary-total">R$ 0,00</span>
+        </div>
+        <div style="font-size:.8rem;color:var(--text-muted);text-align:right;margin-top:4px" class="summary-pix">
+          R$ 0,00 no PIX
+        </div>
+
+        <div class="pix-note" style="margin-top:16px">
+          <i class="fas fa-bolt" style="flex-shrink:0"></i>
+          <span>Pague no <strong>PIX</strong> e ganhe <strong>10% de desconto</strong> extra no total!</span>
+        </div>
+
+        <!-- COUPON -->
+        <div style="margin:20px 0">
+          <div style="font-family:var(--font-head);font-size:.85rem;font-weight:700;margin-bottom:8px">
+            <i class="fas fa-tag" style="color:var(--green)"></i> Cupom de Desconto
+          </div>
+          <div class="coupon-form">
+            <input type="text" class="coupon-input" placeholder="Digite o cupom">
+            <button class="btn btn-primary btn-sm apply-coupon-btn">Aplicar</button>
+          </div>
+          <div style="font-size:.75rem;color:var(--text-muted);margin-top:4px">Tente: COPA10 · GOL15</div>
+        </div>
+
+        <!-- SHIPPING CALC -->
+        <div class="shipping-calc">
+          <h4><i class="fas fa-map-marker-alt" style="color:var(--green)"></i> Calcular Frete</h4>
+          <div class="shipping-calc-form">
+            <input type="text" class="shipping-cep-input" data-mask="cep" placeholder="00000-000">
+            <button class="btn btn-primary btn-sm calc-shipping-btn">Calcular</button>
+          </div>
+          <div class="shipping-result"></div>
+        </div>
+
+        <a href="checkout.html" class="btn btn-primary btn-block btn-lg" style="margin-top:20px">
+          <i class="fas fa-lock"></i> Finalizar Compra
+        </a>
+        <a href="checkout.html" class="btn btn-gold btn-block" style="margin-top:10px">
+          <i class="fas fa-bolt"></i> Pagar com PIX — 10% OFF
+        </a>
+
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+          <span style="font-size:.7rem;color:var(--text-muted);display:flex;align-items:center;gap:4px"><i class="fas fa-lock" style="color:var(--green)"></i> Compra segura</span>
+          <span style="font-size:.7rem;color:var(--text-muted)">·</span>
+          <span style="font-size:.7rem;color:var(--text-muted)">PIX · Cartão · Boleto</span>
+        </div>
+
+        <div style="display:flex;justify-content:center;gap:6px;margin-top:12px">
+          <span style="font-size:1.2rem" title="PIX">💸</span>
+          <span style="font-size:1.2rem" title="Visa">💳</span>
+          <span style="font-size:1.2rem" title="Mastercard">💳</span>
+          <span style="font-size:1.2rem" title="Boleto">📄</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div style="background:var(--bg);padding:60px 0;margin-top:40px">
+  <div class="container">
+    <div class="section-title" style="margin-bottom:32px">
+      <span class="label">Não esqueça</span>
+      <h2>Produtos que você <span>pode gostar</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <a href="produto.html?id=1"><div class="product-img"><div class="product-img-bg bg-caneca">☕</div><div class="product-badges"><span class="badge badge-red">-33%</span></div></div></a>
+        <div class="product-info">
+          <div class="product-name">Caneca Porcelana Personalizada</div>
+          <div class="product-pricing"><span class="price-old">R$ 59,90</span><span class="price-current">R$ 39,90</span></div>
+          <button class="btn btn-primary" onclick="addToCart({id:'p1',name:'Caneca Porcelana',price:39.90,emoji:'☕',bgClass:'bg-caneca',custom:{}})"><i class="fas fa-plus"></i> Adicionar</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="produto.html?id=5"><div class="product-img"><div class="product-img-bg bg-magica">✨</div><div class="product-badges"><span class="badge badge-red">Viral!</span></div></div></a>
+        <div class="product-info">
+          <div class="product-name">Caneca Mágica Muda de Cor</div>
+          <div class="product-pricing"><span class="price-old">R$ 69,90</span><span class="price-current">R$ 44,90</span></div>
+          <button class="btn btn-primary" onclick="addToCart({id:'p5',name:'Caneca Mágica',price:44.90,emoji:'✨',bgClass:'bg-magica',custom:{}})"><i class="fas fa-plus"></i> Adicionar</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="produto.html?id=7"><div class="product-img"><div class="product-img-bg bg-squeeze">🍶</div></div></a>
+        <div class="product-info">
+          <div class="product-name">Squeeze Esportivo 700ml</div>
+          <div class="product-pricing"><span class="price-old">R$ 49,90</span><span class="price-current">R$ 34,90</span></div>
+          <button class="btn btn-primary" onclick="addToCart({id:'p7',name:'Squeeze Esportivo',price:34.90,emoji:'🍶',bgClass:'bg-squeeze',custom:{}})"><i class="fas fa-plus"></i> Adicionar</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <a href="produto.html?id=4"><div class="product-img"><div class="product-img-bg bg-kit">🎁</div><div class="product-badges"><span class="badge badge-red">Mais vendido</span></div></div></a>
+        <div class="product-info">
+          <div class="product-name">Kit Torcedor Completo</div>
+          <div class="product-pricing"><span class="price-old">R$ 199,90</span><span class="price-current">R$ 149,90</span></div>
+          <button class="btn btn-gold" onclick="addToCart({id:'p4',name:'Kit Torcedor',price:149.90,emoji:'🎁',bgClass:'bg-kit',custom:{}})"><i class="fas fa-plus"></i> Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2026 Campeão Store. Todos os direitos reservados.</p>
+      <div class="payment-methods">
+        <span class="payment-badge">PIX</span>
+        <span class="payment-badge">Visa</span>
+        <span class="payment-badge">Master</span>
+        <span class="payment-badge">Elo</span>
+        <span class="payment-badge">Boleto</span>
+      </div>
+      <div class="secured"><i class="fas fa-lock"></i> Site 100% Seguro · SSL</div>
+    </div>
+  </div>
+</footer>
+
+<div class="whatsapp-float" id="wa-float">
+  <div class="wa-options" id="wa-options">
+    <a href="https://wa.me/5563992795579?text=Ola! Vim do site Campeao Store e preciso de ajuda" target="_blank" class="wa-option-link">
+      <i class="fab fa-whatsapp"></i>
+      <div><div class="wa-opt-title">Suporte 1</div><div class="wa-opt-num">+55 (63) 99279-5579</div></div>
+    </a>
+    <a href="https://wa.me/5563991227871?text=Ola! Vim do site Campeao Store e preciso de ajuda" target="_blank" class="wa-option-link">
+      <i class="fab fa-whatsapp"></i>
+      <div><div class="wa-opt-title">Suporte 2</div><div class="wa-opt-num">+55 (63) 99122-7871</div></div>
+    </a>
+  </div>
+  <div class="whatsapp-pulse"></div>
+  <button class="wa-main-btn" onclick="toggleWA()">
+    <i class="fab fa-whatsapp"></i>
+    <span>Fale conosco!</span>
+  </button>
+</div>  <a href="https://wa.me/5563992795579" target="_blank">
+    <i class="fab fa-whatsapp"></i><span>Precisa de ajuda?</span>
+  </a>
+</div>
+
+<div class="cart-overlay"></div>
+<div class="cart-sidebar">
+  <div class="cart-sidebar-header">
+    <h3>🛒 Meu Carrinho</h3>
+    <button class="close-cart"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-sidebar-items"></div>
+  <div class="cart-sidebar-footer">
+    <div class="cart-total-line"><span>Total:</span><strong>R$ 0,00</strong></div>
+    <div class="pix-note"><i class="fas fa-bolt"></i> PIX com <strong>10% OFF</strong> extra!</div>
+    <a href="carrinho.html" class="btn btn-outline btn-block" style="margin-bottom:10px">Ver Carrinho</a>
+    <a href="checkout.html" class="btn btn-primary btn-block">Finalizar Compra <i class="fas fa-arrow-right"></i></a>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

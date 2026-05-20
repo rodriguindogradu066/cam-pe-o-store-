@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar Compra | Campeão Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="announcement-bar">
+  <div class="items">
+    <span>🔒 Ambiente 100% <span class="gold">seguro e encriptado</span></span>
+    <span>⚡ PIX com <span class="gold">10% de desconto</span> extra</span>
+  </div>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">⚽</div>
+      <div class="logo-text">
+        <div class="name">CAMPEÃO STORE</div>
+        <div class="tagline">Checkout Seguro</div>
+      </div>
+    </a>
+    <div style="display:flex;align-items:center;gap:8px;color:var(--green);font-size:.85rem;font-weight:700;font-family:var(--font-head)">
+      <i class="fas fa-lock"></i> Pagamento 100% Seguro
+    </div>
+    <div class="header-actions">
+      <a href="https://wa.me/5563992795579" target="_blank" class="header-btn whatsapp-btn">
+        <i class="fab fa-whatsapp icon"></i> <span>Suporte</span>
+      </a>
+      <button class="header-btn open-cart">
+        <i class="fas fa-shopping-cart icon"></i>
+        <span class="cart-count" style="display:none">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- CHECKOUT STEPS -->
+<div style="background:var(--white);border-bottom:1px solid var(--border);padding:20px 0">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:center;gap:0;max-width:500px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-family:var(--font-head);font-size:.85rem;font-weight:700">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem"><i class="fas fa-check"></i></div>
+        Carrinho
+      </div>
+      <div style="flex:1;height:2px;background:var(--green);margin:0 12px"></div>
+      <div style="display:flex;align-items:center;gap:8px;color:var(--green);font-family:var(--font-head);font-size:.85rem;font-weight:700">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem">2</div>
+        Entrega & Pagamento
+      </div>
+      <div style="flex:1;height:2px;background:var(--border);margin:0 12px"></div>
+      <div style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-family:var(--font-head);font-size:.85rem;font-weight:700">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--border);color:var(--text-muted);display:flex;align-items:center;justify-content:center;font-size:.8rem">3</div>
+        Confirmação
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="checkout-page">
+  <div class="container">
+    <div class="checkout-layout">
+
+      <!-- FORM PANEL -->
+      <div class="checkout-form-panel">
+
+        <!-- PERSONAL DATA -->
+        <div class="checkout-step">
+          <div class="step-header">
+            <div class="step-num-badge">1</div>
+            <h3>Dados Pessoais</h3>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome completo <span style="color:var(--red)">*</span></label>
+              <input type="text" id="nome" placeholder="Seu nome completo" required>
+            </div>
+            <div class="form-group">
+              <label>CPF <span style="color:var(--red)">*</span></label>
+              <input type="text" data-mask="cpf" placeholder="000.000.000-00" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>E-mail <span style="color:var(--red)">*</span></label>
+              <input type="email" id="email" placeholder="seu@email.com" required>
+            </div>
+            <div class="form-group">
+              <label>WhatsApp / Telefone <span style="color:var(--red)">*</span></label>
+              <input type="text" data-mask="phone" placeholder="(11) 99999-9999" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- SHIPPING ADDRESS -->
+        <div class="checkout-step">
+          <div class="step-header">
+            <div class="step-num-badge">2</div>
+            <h3>Endereço de Entrega</h3>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>CEP <span style="color:var(--red)">*</span></label>
+              <input type="text" id="cep" data-mask="cep" placeholder="00000-000" required>
+              <span style="font-size:.75rem;color:var(--green);margin-top:4px;display:block;cursor:pointer" onclick="document.getElementById('cep').dispatchEvent(new Event('blur'))">
+                <i class="fas fa-search"></i> Buscar endereço automaticamente
+              </span>
+            </div>
+            <div class="form-group">
+              <label>Estado</label>
+              <input type="text" id="estado" placeholder="SP" maxlength="2">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Rua / Logradouro <span style="color:var(--red)">*</span></label>
+            <input type="text" id="rua" placeholder="Rua das Flores" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Número <span style="color:var(--red)">*</span></label>
+              <input type="text" placeholder="123" required>
+            </div>
+            <div class="form-group">
+              <label>Complemento</label>
+              <input type="text" placeholder="Apto 42, Bloco B">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Bairro <span style="color:var(--red)">*</span></label>
+              <input type="text" id="bairro" placeholder="Centro" required>
+            </div>
+            <div class="form-group">
+              <label>Cidade <span style="color:var(--red)">*</span></label>
+              <input type="text" id="cidade" placeholder="São Paulo" required>
+            </div>
+          </div>
+
+          <!-- SHIPPING OPTIONS -->
+          <div style="margin-top:20px">
+            <label style="font-size:.85rem;font-weight:700;display:block;margin-bottom:12px">Opção de Frete</label>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <label style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border:2px solid var(--green);border-radius:var(--radius);cursor:pointer;background:#f0fff7">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <input type="radio" name="shipping" value="pac" checked>
+                  <div>
+                    <div style="font-weight:700;font-size:.9rem">PAC — Correios</div>
+                    <div style="font-size:.78rem;color:var(--text-muted)">5 a 8 dias úteis</div>
+                  </div>
+                </div>
+                <span style="font-weight:800;color:var(--green);font-family:var(--font-head)">R$ 19,90</span>
+              </label>
+              <label style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border:2px solid var(--border);border-radius:var(--radius);cursor:pointer">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <input type="radio" name="shipping" value="sedex">
+                  <div>
+                    <div style="font-weight:700;font-size:.9rem">SEDEX — Correios</div>
+                    <div style="font-size:.78rem;color:var(--text-muted)">1 a 3 dias úteis</div>
+                  </div>
+                </div>
+                <span style="font-weight:800;font-family:var(--font-head)">R$ 34,90</span>
+              </label>
+              <label style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border:2px solid var(--border);border-radius:var(--radius);cursor:pointer">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <input type="radio" name="shipping" value="retirada">
+                  <div>
+                    <div style="font-weight:700;font-size:.9rem">Retirar na Loja</div>
+                    <div style="font-size:.78rem;color:var(--text-muted)">Disponível em 48h • São Paulo, SP</div>
+                  </div>
+                </div>
+                <span style="font-weight:800;color:var(--green);font-family:var(--font-head)">GRÁTIS</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYMENT -->
+        <div class="checkout-step">
+          <div class="step-header">
+            <div class="step-num-badge">3</div>
+            <h3>Forma de Pagamento</h3>
+          </div>
+
+          <div class="payment-methods-tabs">
+            <div class="payment-tab active" data-tab="pix">
+              <i class="fas fa-bolt"></i> PIX <span style="background:var(--green);color:#fff;font-size:.65rem;padding:2px 6px;border-radius:50px;margin-left:4px">10% OFF</span>
+            </div>
+            <div class="payment-tab" data-tab="cartao">
+              <i class="fas fa-credit-card"></i> Cartão
+            </div>
+            <div class="payment-tab" data-tab="boleto">
+              <i class="fas fa-barcode"></i> Boleto
+            </div>
+          </div>
+
+          <!-- PIX -->
+          <div class="payment-panel active pix-panel" data-panel="pix">
+            <div class="pix-qr">💸</div>
+            <h4>Pague com PIX e ganhe 10% OFF!</h4>
+            <p>Após confirmar o pedido, você receberá o QR Code e a chave PIX para pagamento imediato.</p>
+            <div class="pix-key">
+              <strong style="font-size:.75rem;color:var(--text-muted);display:block;margin-bottom:4px">Chave PIX (CNPJ):</strong>
+              00.000.000/0001-00
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;justify-content:center;background:#e8f5e9;border-radius:var(--radius-sm);padding:12px;font-size:.85rem;color:var(--green-dark)">
+              <i class="fas fa-check-circle"></i>
+              Pagamento confirmado em <strong style="margin-left:4px">segundos</strong>
+            </div>
+          </div>
+
+          <!-- CARTÃO -->
+          <div class="payment-panel card-form" data-panel="cartao">
+            <div class="form-group">
+              <label>Número do Cartão <span style="color:var(--red)">*</span></label>
+              <input type="text" data-mask="card" placeholder="0000 0000 0000 0000" maxlength="19">
+            </div>
+            <div class="form-group">
+              <label>Nome no Cartão <span style="color:var(--red)">*</span></label>
+              <input type="text" placeholder="NOME COMO NO CARTÃO" style="text-transform:uppercase">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Validade <span style="color:var(--red)">*</span></label>
+                <input type="text" data-mask="expiry" placeholder="MM/AA" maxlength="5">
+              </div>
+              <div class="form-group">
+                <label>CVV <span style="color:var(--red)">*</span></label>
+                <input type="text" placeholder="123" maxlength="4">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Parcelas</label>
+              <select>
+                <option>1x de R$ 0,00 sem juros</option>
+                <option>2x de R$ 0,00 sem juros</option>
+                <option>3x de R$ 0,00 sem juros</option>
+                <option>6x de R$ 0,00 sem juros</option>
+                <option>12x de R$ 0,00 com juros</option>
+              </select>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--text-muted);margin-top:8px">
+              <i class="fas fa-lock" style="color:var(--green)"></i>
+              Seus dados estão protegidos com criptografia SSL 256-bit
+            </div>
+          </div>
+
+          <!-- BOLETO -->
+          <div class="payment-panel" data-panel="boleto" style="text-align:center;padding:24px 0">
+            <div style="font-size:3rem;margin-bottom:16px">📄</div>
+            <h4 style="margin-bottom:8px">Boleto Bancário</h4>
+            <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:16px">
+              O boleto será gerado após a confirmação. Vencimento em <strong>3 dias úteis</strong>.
+            </p>
+            <div style="background:#fff8e1;border:1px solid #ffe082;border-radius:var(--radius-sm);padding:12px;font-size:.8rem;color:#856404">
+              <i class="fas fa-exclamation-triangle"></i>
+              O pedido só será processado após a compensação do boleto (1–2 dias úteis)
+            </div>
+          </div>
+        </div>
+
+        <!-- NOTES -->
+        <div class="checkout-step">
+          <div class="step-header">
+            <div class="step-num-badge" style="background:var(--gold);color:var(--dark)"><i class="fas fa-comment"></i></div>
+            <h3>Observações do Pedido (opcional)</h3>
+          </div>
+          <div class="form-group">
+            <textarea rows="3" placeholder="Alguma informação adicional para a personalização? Ex: fonte preferida, cor específica, mensagem extra..."></textarea>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ORDER SUMMARY -->
+      <div class="order-summary-panel">
+        <h3>🧾 Resumo do Pedido</h3>
+
+        <div id="checkout-items">
+          <div style="text-align:center;padding:24px;color:var(--text-muted)">
+            <div style="font-size:2rem;margin-bottom:8px">🛒</div>
+            <p style="font-size:.85rem">Adicione produtos ao carrinho</p>
+            <a href="produtos.html" style="color:var(--green);font-size:.85rem;font-weight:700">Ver produtos →</a>
+          </div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="summary-line"><span>Subtotal</span><span id="co-subtotal">R$ 0,00</span></div>
+        <div class="summary-line"><span>Frete</span><span style="color:var(--green)">R$ 19,90</span></div>
+        <div class="summary-line"><span>Desconto PIX</span><span style="color:var(--red)">— R$ 0,00</span></div>
+        <div class="summary-line total"><span>Total</span><span id="co-total" style="color:var(--green)">R$ 0,00</span></div>
+
+        <div class="pix-note" style="margin:16px 0">
+          <i class="fas fa-bolt" style="flex-shrink:0"></i>
+          <span>No PIX: <strong id="co-pix">R$ 0,00</strong> (10% OFF)</span>
+        </div>
+
+        <button class="btn btn-primary btn-block btn-lg checkout-submit" style="font-size:1rem">
+          <i class="fas fa-lock"></i> Confirmar Pedido
+        </button>
+        <button class="btn btn-gold btn-block" style="margin-top:10px" onclick="showToast('Redirecionando para o PIX...','info');setTimeout(()=>{document.querySelector('.checkout-submit').click()},1000)">
+          <i class="fas fa-bolt"></i> Pagar com PIX Agora
+        </button>
+
+        <div class="secure-badges">
+          <div class="secure-badge"><i class="fas fa-lock"></i> SSL Seguro</div>
+          <div class="secure-badge"><i class="fas fa-shield-alt"></i> Dados protegidos</div>
+          <div class="secure-badge"><i class="fas fa-undo"></i> 7 dias p/ troca</div>
+        </div>
+
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
+          <div style="font-size:.75rem;color:var(--text-muted);text-align:center;line-height:1.8">
+            Ao finalizar a compra você concorda com os nossos
+            <a href="#" style="color:var(--green)">Termos de Uso</a> e
+            <a href="#" style="color:var(--green)">Política de Privacidade</a>.
+          </div>
+        </div>
+
+        <div style="margin-top:16px;background:#e8f5e9;border-radius:var(--radius);padding:14px;display:flex;gap:10px;align-items:center">
+          <span style="font-size:1.5rem">💬</span>
+          <div>
+            <div style="font-family:var(--font-head);font-weight:700;font-size:.82rem">Precisa de ajuda?</div>
+            <a href="https://wa.me/5563992795579" style="color:var(--green);font-size:.8rem;font-weight:600"><i class="fab fa-whatsapp"></i> Fale conosco no WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer" style="margin-top:60px">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2026 Campeão Store. Todos os direitos reservados.</p>
+      <div class="payment-methods">
+        <span class="payment-badge">PIX</span>
+        <span class="payment-badge">Visa</span>
+        <span class="payment-badge">Master</span>
+        <span class="payment-badge">Elo</span>
+        <span class="payment-badge">Boleto</span>
+      </div>
+      <div class="secured"><i class="fas fa-lock"></i> Checkout 100% Seguro · SSL</div>
+    </div>
+  </div>
+</footer>
+
+<div class="cart-overlay"></div>
+<div class="cart-sidebar">
+  <div class="cart-sidebar-header">
+    <h3>🛒 Meu Carrinho</h3>
+    <button class="close-cart"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-sidebar-items"></div>
+  <div class="cart-sidebar-footer">
+    <div class="cart-total-line"><span>Total:</span><strong>R$ 0,00</strong></div>
+    <a href="checkout.html" class="btn btn-primary btn-block">Finalizar Compra</a>
+  </div>
+</div>
+
+<script>
+// Populate checkout order summary from cart
+document.addEventListener('DOMContentLoaded', () => {
+  const cart = JSON.parse(localStorage.getItem('campeao_cart') || '[]');
+  const container = document.getElementById('checkout-items');
+  if (cart.length > 0 && container) {
+    container.innerHTML = cart.map(item => `
+      <div class="order-item">
+        <div class="order-item-img ${item.bgClass}">${item.emoji}</div>
+        <div class="order-item-info">
+          <div class="order-item-name">${item.name}</div>
+          <div class="order-item-custom">Qtd: ${item.qty}</div>
+        </div>
+        <div class="order-item-price">R$ ${(item.price * item.qty).toFixed(2).replace('.',',')}</div>
+      </div>`).join('');
+    const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+    document.getElementById('co-subtotal').textContent = `R$ ${total.toFixed(2).replace('.',',')}`;
+    document.getElementById('co-total').textContent = `R$ ${(total + 19.90).toFixed(2).replace('.',',')}`;
+    document.getElementById('co-pix').textContent = `R$ ${((total + 19.90) * 0.9).toFixed(2).replace('.',',')}`;
+
+    // update installments select
+    const sel = document.querySelector('select');
+    if (sel) {
+      const v = total + 19.90;
+      sel.innerHTML = [1,2,3,6,12].map((n,i) => {
+        const rate = n <= 6 ? 0 : 1.99;
+        const installment = n <= 6 ? v/n : (v * Math.pow(1+rate/100, n)) / n;
+        return `<option>${n}x de R$ ${installment.toFixed(2).replace('.',',')} ${n<=6?'sem juros':'com juros'}</option>`;
+      }).join('');
+    }
+  }
+});
+</script>
+<!-- Firebase SDK (para salvar pedidos) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script>initFirebase();</script>
+<script src="js/app.js"></script>
+</body>
+</html>
