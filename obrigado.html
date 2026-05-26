@@ -1,329 +1,94 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pedido Confirmado! | Campeão Store</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    .confetti-wrap { position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden; }
-    .confetti-piece {
-      position:absolute; width:10px; height:10px; top:-20px;
-      animation: confettiFall linear forwards;
-    }
-    @keyframes confettiFall {
-      to { transform: translateY(110vh) rotate(720deg); }
-    }
-    .success-icon {
-      width:100px; height:100px; border-radius:50%;
-      background:linear-gradient(135deg,var(--green),var(--green-light));
-      display:flex; align-items:center; justify-content:center;
-      margin:0 auto 24px; font-size:2.5rem; color:#fff;
-      animation: popIn .5s cubic-bezier(.175,.885,.32,1.275) both;
-      box-shadow:0 0 0 12px rgba(0,153,77,.15);
-    }
-    @keyframes popIn {
-      0% { transform:scale(0); opacity:0; }
-      100% { transform:scale(1); opacity:1; }
-    }
-    .order-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border-radius:var(--radius); overflow:hidden; margin:32px 0; }
-    .order-step { background:var(--white); padding:20px 16px; text-align:center; }
-    .order-step .step-icon-wrap {
-      width:48px; height:48px; border-radius:50%; margin:0 auto 12px;
-      display:flex; align-items:center; justify-content:center; font-size:1.3rem;
-    }
-    .order-step .step-title { font-family:var(--font-head); font-weight:700; font-size:.82rem; margin-bottom:4px; }
-    .order-step .step-desc { font-size:.75rem; color:var(--text-muted); line-height:1.4; }
-    .order-step.done .step-icon-wrap { background:#e8f5e9; }
-    .order-step.active .step-icon-wrap { background:#e3f2fd; }
-    .order-step.pending .step-icon-wrap { background:var(--bg); }
-  </style>
-</head>
-<body>
-
-<!-- CONFETTI -->
-<div class="confetti-wrap" id="confetti"></div>
-
-<header class="header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">
-      <div class="logo-icon">⚽</div>
-      <div class="logo-text">
-        <div class="name">CAMPEÃO STORE</div>
-        <div class="tagline">Personalizados de Futebol</div>
-      </div>
-    </a>
-    <div></div>
-    <div class="header-actions">
-      <a href="https://wa.me/5563992795579" target="_blank" class="header-btn whatsapp-btn">
-        <i class="fab fa-whatsapp icon"></i> <span>Suporte</span>
-      </a>
-    </div>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedido Confirmado! | Campeão Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--vd:#006400;--vm:#007a00;--vl:#009900;--vbg:#003300;--am:#FFD700;--aml:#FFE566;--amd:#CCA800;--br:#fff;--pr:#0a0a0a;--tx:#111;--txm:#555;--bg:#f4f4f0;--bd:#ddd;--red:#cc0000;--font-h:'Montserrat',sans-serif;--font-b:'Open Sans',sans-serif;--r:10px;--rl:18px;--rxl:24px;--sh:0 4px 20px rgba(0,0,0,.1);--shl:0 8px 40px rgba(0,0,0,.18)}
+body{font-family:var(--font-b);color:var(--tx);background:var(--bg);overflow-x:hidden}a{text-decoration:none;color:inherit}img{max-width:100%;height:auto}.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-h);font-weight:800;font-size:.85rem;padding:12px 26px;border-radius:50px;border:none;cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-v{background:var(--vm);color:#fff}.btn-v:hover{background:var(--vl);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,122,0,.35)}
+.btn-a{background:linear-gradient(135deg,var(--am),var(--amd));color:#003300}.btn-a:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(255,215,0,.5)}
+.btn-ol{background:transparent;border:2px solid var(--am);color:var(--am)}.btn-ol:hover{background:var(--am);color:#003300}
+.btn-lg{padding:16px 40px;font-size:1rem}.btn-sm{padding:8px 18px;font-size:.78rem}.btn-bl{width:100%;justify-content:center}
+.ann{background:var(--vbg);color:#fff;padding:8px 0;overflow:hidden}.ann-track{display:flex;gap:60px;animation:marquee 28s linear infinite;white-space:nowrap}.ann-track span{font-family:var(--font-h);font-size:.75rem;font-weight:700;display:flex;align-items:center;gap:8px}.ann-track .am{color:var(--am)}@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.header{background:#003300;border-bottom:3px solid var(--am);position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.4)}.header-inner{max-width:1200px;margin:0 auto;padding:0 20px;height:72px;display:flex;align-items:center;gap:16px}
+.logo{display:flex;align-items:center;gap:12px;flex-shrink:0}.logo-img{height:54px;width:54px;object-fit:cover;border-radius:50%;border:3px solid var(--am);box-shadow:0 0 16px rgba(255,215,0,.5);transition:transform .3s}.logo:hover .logo-img{transform:scale(1.08) rotate(5deg)}.logo-nm{font-family:var(--font-h);font-weight:900;font-size:1.05rem;color:var(--am);line-height:1.1}.logo-tg{font-size:.62rem;color:rgba(255,255,255,.55);font-weight:600}
+.hs{flex:1;max-width:440px;position:relative}.hs input{width:100%;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,215,0,.3);border-radius:50px;padding:9px 16px 9px 40px;font-size:.85rem;color:#fff;outline:none;font-family:var(--font-b)}.hs input::placeholder{color:rgba(255,255,255,.4)}.hs input:focus{border-color:var(--am)}.hs .si{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:rgba(255,215,0,.5)}
+.ha{display:flex;align-items:center;gap:10px;margin-left:auto}.hb{display:flex;align-items:center;gap:6px;padding:9px 18px;border-radius:50px;font-family:var(--font-h);font-weight:700;font-size:.8rem;cursor:pointer;border:none;transition:all .2s}.hb-wa{background:#25d366;color:#fff}.hb-wa:hover{background:#1db954}.hb-cart{background:var(--am);color:#003300;position:relative}.hb-cart:hover{background:var(--aml)}.cart-badge{background:var(--red);color:#fff;border-radius:50%;width:18px;height:18px;font-size:.62rem;display:none;align-items:center;justify-content:center;position:absolute;top:-5px;right:-5px;font-family:var(--font-h);font-weight:900}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}.hamburger span{display:block;width:24px;height:2.5px;background:var(--am);border-radius:2px}
+.nav{background:#004d00;border-bottom:2px solid rgba(255,215,0,.2)}.nav-inner{max-width:1200px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none;padding:0 20px}.nav-inner::-webkit-scrollbar{display:none}.nav-inner a{color:rgba(255,255,255,.75);font-family:var(--font-h);font-weight:700;font-size:.78rem;padding:13px 16px;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:all .2s;border-bottom:3px solid transparent}.nav-inner a:hover,.nav-inner a.active{color:var(--am);border-bottom-color:var(--am)}.nav-inner a.sale{color:var(--am)}
+.nav-mob{display:none;background:#004d00;overflow-x:auto;scrollbar-width:none;border-bottom:2px solid rgba(255,215,0,.15)}.nav-mob a{color:rgba(255,255,255,.8);font-family:var(--font-h);font-weight:700;font-size:.75rem;padding:11px 14px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.nav-mob a.sale{color:var(--am)}
+.promo{background:linear-gradient(135deg,#001a00,#003300,#001a00);padding:60px 20px;text-align:center;position:relative;overflow:hidden}.promo::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,100,0,.5),transparent 70%)}.promo::after{content:'⚽';position:absolute;font-size:22rem;opacity:.03;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.promo-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,215,0,.12);border:1px solid rgba(255,215,0,.4);color:var(--am);font-family:var(--font-h);font-size:.75rem;font-weight:800;padding:6px 18px;border-radius:50px;margin-bottom:20px;letter-spacing:1px;position:relative;z-index:1}
+.promo h2{font-family:var(--font-h);font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:12px;position:relative;z-index:1}.promo h2 .am{color:var(--am);text-shadow:0 0 30px rgba(255,215,0,.6)}.promo p{color:rgba(255,255,255,.75);font-size:.95rem;margin-bottom:28px;position:relative;z-index:1}
+.cd{display:flex;justify-content:center;gap:10px;margin-bottom:32px;position:relative;z-index:1}.cd-block{background:rgba(0,0,0,.4);border:2px solid rgba(255,215,0,.4);border-radius:var(--r);padding:12px 20px;min-width:80px;text-align:center}.cd-num{font-family:var(--font-h);font-size:2rem;font-weight:900;color:var(--am);display:block;line-height:1}.cd-lbl{font-size:.62rem;color:rgba(255,255,255,.5);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:4px;display:block}.cd-sep{font-family:var(--font-h);font-size:1.8rem;font-weight:900;color:var(--am);opacity:.5;align-self:center}
+.banner-w{display:block;overflow:hidden;line-height:0;position:relative;cursor:pointer}.banner-w img{width:100%;height:auto;display:block;max-height:520px;object-fit:cover;transition:transform .5s}.banner-w:hover img{transform:scale(1.02)}.banner-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,50,0,.3),transparent 50%);pointer-events:none}.banner-mob{display:none;background:linear-gradient(90deg,var(--am),var(--amd));color:#003300;font-family:var(--font-h);font-weight:900;font-size:.95rem;padding:14px;text-align:center}
+.hero{background:linear-gradient(135deg,#001a00,#003300 50%,#001a00);padding:72px 20px;position:relative;overflow:hidden}.hero::before{content:'';position:absolute;inset:0;opacity:.4;background-image:radial-gradient(circle,rgba(255,215,0,.06) 1px,transparent 1px);background-size:32px 32px}
+.hero-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:center;position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.35);color:var(--am);font-family:var(--font-h);font-size:.72rem;font-weight:800;padding:7px 16px;border-radius:50px;margin-bottom:20px}
+.hero h1{font-family:var(--font-h);font-size:clamp(2rem,4.5vw,3.5rem);font-weight:900;color:#fff;line-height:1.02;margin-bottom:18px}.hero h1 .am{color:var(--am);display:block;text-shadow:0 0 40px rgba(255,215,0,.5)}.hero h1 .sm{font-size:.68em;color:rgba(255,255,255,.85);display:block}
+.hero-feats{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px}.hero-feat{color:rgba(255,255,255,.75);font-size:.8rem;display:flex;align-items:center;gap:7px}.hero-feat i{color:var(--am)}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+.hero-stats{display:flex;gap:36px;padding-top:22px;border-top:1px solid rgba(255,215,0,.2)}.hs-num{font-family:var(--font-h);font-size:1.5rem;font-weight:900;color:var(--am)}.hs-lbl{font-size:.7rem;color:rgba(255,255,255,.5);font-weight:600}
+.hp{background:rgba(0,0,0,.4);border:2px solid rgba(255,215,0,.3);border-radius:var(--rxl);padding:28px;text-align:center;position:relative;transition:transform .3s,box-shadow .3s;backdrop-filter:blur(10px);display:block}.hp:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(255,215,0,.2)}.hp-img{width:100%;max-width:220px;height:240px;object-fit:cover;border-radius:var(--rl);margin-bottom:16px;box-shadow:0 12px 40px rgba(0,0,0,.6);transition:transform .4s}.hp:hover .hp-img{transform:scale(1.04) rotate(-1deg)}.hp-badge{position:absolute;top:-12px;right:-12px;background:linear-gradient(135deg,var(--am),var(--amd));width:66px;height:66px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--font-h);font-size:.52rem;font-weight:900;color:#003300;text-align:center;line-height:1.3;box-shadow:0 4px 20px rgba(255,215,0,.6);animation:glow 2s ease-in-out infinite}@keyframes glow{0%,100%{box-shadow:0 4px 20px rgba(255,215,0,.6)}50%{box-shadow:0 4px 40px rgba(255,215,0,1)}}.hp-info{background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);border-radius:var(--r);padding:14px;margin-bottom:14px;text-align:left}.hp-name{font-family:var(--font-h);font-weight:900;color:#fff;font-size:1rem;margin-bottom:8px}.hp-feats{list-style:none}.hp-feats li{color:rgba(255,255,255,.75);font-size:.75rem;padding:3px 0;display:flex;align-items:center;gap:7px}.hp-feats li i{color:var(--am);font-size:.7rem}.hp-old{color:rgba(255,255,255,.35);font-size:.8rem;text-decoration:line-through;margin-bottom:2px}.hp-price{font-family:var(--font-h);font-weight:900;font-size:2rem;color:var(--am);line-height:1}.hp-pix{background:rgba(0,200,0,.15);border:1px solid rgba(0,200,0,.3);border-radius:var(--r);padding:6px 12px;font-size:.75rem;color:#66ff66;margin:8px 0 14px;display:inline-block;font-family:var(--font-h);font-weight:700}
+.trust{background:#003300;border-top:2px solid rgba(255,215,0,.2);border-bottom:2px solid rgba(255,215,0,.2);padding:18px 20px}.trust-in{max-width:1200px;margin:0 auto;display:flex;justify-content:space-around;flex-wrap:wrap;gap:20px}.ti{display:flex;align-items:center;gap:10px}.ti-ic{font-size:1.6rem}.ti-t{font-family:var(--font-h);font-weight:800;font-size:.82rem;color:#fff}.ti-s{font-size:.7rem;color:rgba(255,255,255,.5)}
+.section{padding:64px 0}.sec-lb{display:inline-block;background:rgba(0,100,0,.12);border:1px solid rgba(0,150,0,.3);color:var(--vm);font-family:var(--font-h);font-size:.72rem;font-weight:800;padding:5px 16px;border-radius:50px;margin-bottom:12px;letter-spacing:.5px}.sec-t{font-family:var(--font-h);font-size:clamp(1.5rem,3vw,2.3rem);font-weight:900;color:var(--pr);margin-bottom:10px}.sec-t .am{color:var(--vm)}.sec-div{width:52px;height:4px;background:linear-gradient(90deg,var(--am),var(--amd));border-radius:2px;margin:12px 0 16px}.sec-sub{color:var(--txm);font-size:.9rem;max-width:540px}.sh{margin-bottom:40px}
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.cat{background:#fff;border:2px solid var(--bd);border-radius:var(--rl);padding:22px 10px;text-align:center;transition:all .25s;cursor:pointer;display:block;position:relative;overflow:hidden}.cat::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--vm),var(--vl));opacity:0;transition:opacity .3s}.cat:hover::before,.cat.active::before{opacity:1}.cat:hover,.cat.active{border-color:var(--vm);transform:translateY(-5px);box-shadow:0 8px 24px rgba(0,100,0,.2)}.cat-em{font-size:2.2rem;display:block;margin-bottom:10px;position:relative;z-index:1;transition:transform .3s}.cat:hover .cat-em{transform:scale(1.2) rotate(-8deg)}.cat-nm{font-family:var(--font-h);font-weight:800;font-size:.78rem;position:relative;z-index:1;transition:color .3s}.cat:hover .cat-nm,.cat.active .cat-nm{color:#fff}.cat-ct{font-size:.68rem;color:var(--txm);position:relative;z-index:1;transition:color .3s}.cat:hover .cat-ct,.cat.active .cat-ct{color:rgba(255,255,255,.7)}
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.pc{background:#fff;border-radius:var(--rl);overflow:hidden;border:2px solid var(--bd);transition:all .3s;cursor:pointer;position:relative}.pc:hover{border-color:var(--vm);box-shadow:0 14px 48px rgba(0,100,0,.15);transform:translateY(-6px)}.pi{position:relative;height:230px;overflow:hidden}.pi-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;transition:transform .4s}.pc:hover .pi-bg{transform:scale(1.1)}.pi-ri{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}.pc:hover .pi-ri{transform:scale(1.08)}.bg-ca{background:linear-gradient(135deg,#fff8f0,#ffe0b2)}.bg-co{background:linear-gradient(135deg,#e8f5e9,#a5d6a7)}.bg-ta{background:linear-gradient(135deg,#fffde7,#fff176)}.bg-ki{background:linear-gradient(135deg,#fce4ec,#f48fb1)}.bg-ma{background:linear-gradient(135deg,#f3e5f5,#ce93d8)}.bg-ga{background:linear-gradient(135deg,#e0f7fa,#80deea)}.bg-sq{background:linear-gradient(135deg,#e8f5e9,#c8e6c9)}.bg-pr{background:linear-gradient(135deg,#fffde7,#FFD700)}
+.pbs{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:4px;z-index:2}.bdg{font-family:var(--font-h);font-size:.63rem;font-weight:800;padding:3px 9px;border-radius:50px}.bdg-r{background:#cc0000;color:#fff}.bdg-v{background:var(--vm);color:#fff}.bdg-a{background:var(--am);color:#003300}.bdg-d{background:rgba(0,0,0,.8);color:#fff}
+.pa{position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:6px;opacity:0;transition:.3s;z-index:2;transform:translateX(10px)}.pc:hover .pa{opacity:1;transform:translateX(0)}.ab{width:32px;height:32px;background:#fff;border:1px solid var(--bd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;cursor:pointer;transition:.2s;color:var(--txm)}.ab:hover{background:var(--vm);color:#fff;border-color:var(--vm)}
+.phc{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,77,0,.95) 60%,transparent);color:#fff;font-family:var(--font-h);font-weight:800;font-size:.82rem;padding:36px 16px 14px;text-align:center;opacity:0;transition:opacity .3s;pointer-events:none;z-index:3}.pc:hover .phc{opacity:1}
+.pi-info{padding:16px}.pi-nm{font-family:var(--font-h);font-weight:800;font-size:.88rem;color:var(--pr);margin-bottom:4px;line-height:1.3}.pi-ds{font-size:.74rem;color:var(--txm);margin-bottom:8px;line-height:1.5}.pi-rt{display:flex;align-items:center;gap:4px;margin-bottom:8px}.stars{color:var(--am);font-size:.85rem}.rc{font-size:.7rem;color:var(--txm)}.po{font-size:.74rem;color:var(--txm);text-decoration:line-through;display:block}.pc_{font-family:var(--font-h);font-weight:900;font-size:1.2rem;color:var(--vm);display:block}.pi_{font-size:.7rem;color:var(--txm)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}.steps::before{content:'';position:absolute;top:34px;left:calc(12.5% + 18px);right:calc(12.5% + 18px);height:2px;background:linear-gradient(90deg,var(--vm),var(--am));z-index:0}.sc{background:#fff;border:2px solid var(--bd);border-radius:var(--rl);padding:30px 20px;text-align:center;position:relative;transition:all .3s;z-index:1}.sc:hover{border-color:var(--vm);transform:translateY(-5px);box-shadow:var(--shl)}.sn{width:36px;height:36px;background:var(--vm);color:#fff;border-radius:50%;font-family:var(--font-h);font-weight:900;font-size:.9rem;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 0 0 4px #fff,0 0 0 6px var(--vm)}.si{font-size:2.4rem;margin-bottom:12px;display:block;transition:transform .3s}.sc:hover .si{transform:scale(1.15) rotate(-5deg)}.sc h3{font-family:var(--font-h);font-weight:800;font-size:.9rem;margin-bottom:8px;color:var(--pr)}.sc p{font-size:.8rem;color:var(--txm);line-height:1.6}
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.tc{background:#fff;border:2px solid var(--bd);border-radius:var(--rl);padding:24px;transition:all .3s;position:relative;overflow:hidden}.tc::before{content:'"';position:absolute;top:-10px;right:16px;font-size:8rem;color:var(--am);opacity:.07;font-family:Georgia,serif;line-height:1}.tc:hover{border-color:var(--am);box-shadow:0 8px 32px rgba(255,215,0,.12);transform:translateY(-3px)}.ta{display:flex;align-items:center;gap:12px;margin-bottom:14px}.tav{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-weight:900;color:#fff;font-size:1.1rem;flex-shrink:0}.tn{font-family:var(--font-h);font-weight:800;font-size:.85rem;color:var(--pr)}.tl{font-size:.7rem;color:var(--txm)}.tt{font-size:.82rem;color:var(--txm);line-height:1.75;margin-bottom:12px;font-style:italic}.ts{color:var(--am);font-size:.95rem;margin-bottom:6px}.tb{font-size:.7rem;color:var(--vm);display:flex;align-items:center;gap:4px;font-weight:700}
+.nl{background:linear-gradient(135deg,#001a00,#003300);padding:60px 20px;text-align:center;border-top:3px solid var(--am);border-bottom:3px solid var(--am)}.nl h2{font-family:var(--font-h);font-size:clamp(1.4rem,3vw,2.2rem);font-weight:900;color:#fff;margin-bottom:10px}.nl h2 span{color:var(--am)}.nl p{color:rgba(255,255,255,.7);margin-bottom:28px;font-size:.9rem}.nl-form{display:flex;gap:8px;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center}.nl-in{flex:1;min-width:240px;padding:14px 22px;border-radius:50px;border:2px solid rgba(255,215,0,.3);background:rgba(255,255,255,.08);color:#fff;font-size:.9rem;outline:none;font-family:var(--font-b)}.nl-in::placeholder{color:rgba(255,255,255,.4)}.nl-in:focus{border-color:var(--am)}
+.ft{background:#001a00;color:rgba(255,255,255,.6);padding:56px 20px 0;border-top:3px solid rgba(255,215,0,.3)}.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;max-width:1200px;margin:0 auto;padding-bottom:44px;border-bottom:1px solid rgba(255,215,0,.15)}.ft-brand p{font-size:.82rem;line-height:1.8;color:rgba(255,255,255,.45);margin:14px 0 18px}.sl{display:flex;gap:8px}.sl-a{width:36px;height:36px;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:.2s;color:rgba(255,255,255,.6)}.sl-a:hover{background:var(--vm);border-color:var(--vm);color:#fff}.fc h4{font-family:var(--font-h);font-size:.85rem;font-weight:800;color:var(--am);margin-bottom:16px;letter-spacing:.5px}.fc ul{list-style:none}.fc ul li{margin-bottom:9px}.fc ul li a{font-size:.8rem;color:rgba(255,255,255,.5);transition:.2s;display:flex;align-items:center;gap:6px}.fc ul li a:hover{color:#fff}.fc ul li a i{font-size:.6rem;color:var(--vl)}.fcc p{font-size:.8rem;display:flex;align-items:flex-start;gap:8px;margin-bottom:10px;color:rgba(255,255,255,.55)}.fcc i{color:var(--am);flex-shrink:0;margin-top:2px}.ft-bot{max-width:1200px;margin:0 auto;padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.74rem}.pm{display:flex;gap:6px;flex-wrap:wrap}.pb{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;padding:3px 10px;border-radius:4px;font-size:.68rem;font-weight:700}.sec2{color:rgba(255,255,255,.35);display:flex;align-items:center;gap:4px}
+.wa-fl{position:fixed;bottom:24px;right:24px;z-index:199;display:flex;flex-direction:column;align-items:flex-end;gap:8px}.wa-os{display:flex;flex-direction:column;gap:6px;opacity:0;pointer-events:none;transition:.25s;transform:translateY(12px)}.wa-os.open{opacity:1;pointer-events:all;transform:translateY(0)}.wa-op{display:flex;align-items:center;gap:10px;background:#fff;border-radius:50px;padding:10px 18px;box-shadow:0 4px 20px rgba(0,0,0,.18);font-size:.8rem;white-space:nowrap;font-family:var(--font-h);font-weight:700;color:var(--pr);text-decoration:none;transition:.2s;border:1px solid #eee}.wa-op:hover{background:#f0fff4;transform:translateX(-4px)}.wa-op i{color:#25d366;font-size:1.15rem}.wa-mb{background:#25d366;color:#fff;border:none;border-radius:50px;padding:14px 22px;font-family:var(--font-h);font-weight:800;font-size:.9rem;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 4px 24px rgba(37,211,102,.55);transition:.2s;position:relative}.wa-mb:hover{background:#1db954;transform:scale(1.05)}.wa-pulse{position:absolute;inset:0;border-radius:50px;background:#25d366;animation:wap 2s infinite;z-index:-1}@keyframes wap{0%{transform:scale(1);opacity:.6}70%{transform:scale(1.2);opacity:0}100%{opacity:0}}
+.co{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;opacity:0;pointer-events:none;transition:.3s}.co.open{opacity:1;pointer-events:all}.cs{position:fixed;top:0;right:-100%;width:390px;max-width:100vw;height:100%;background:#fff;z-index:201;transition:.35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(0,0,0,.2)}.cs.open{right:0}.c-hd{padding:20px;border-bottom:2px solid var(--bd);display:flex;align-items:center;justify-content:space-between;background:#003300}.c-hd h3{font-family:var(--font-h);font-weight:900;font-size:1rem;color:var(--am)}.c-cl{background:rgba(255,255,255,.1);border:none;font-size:1.1rem;cursor:pointer;color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.2s}.c-cl:hover{background:rgba(255,255,255,.2)}.c-its{flex:1;overflow-y:auto;padding:16px}.c-em{text-align:center;padding:48px 20px;color:var(--txm)}.c-em i{font-size:3rem;display:block;margin-bottom:14px;color:#ddd}.c-em p{font-family:var(--font-h);font-weight:600;font-size:.9rem}.c-it{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--bd)}.c-ii{width:56px;height:56px;border-radius:var(--r);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.8rem}.c-in{font-family:var(--font-h);font-weight:700;font-size:.8rem;margin-bottom:4px;color:var(--pr)}.c-ip{color:var(--vm);font-weight:800;font-size:.88rem;font-family:var(--font-h)}.c-qty{display:flex;align-items:center;gap:8px;margin-top:6px}.c-qty button{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--bd);background:#f9f9f9;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:.2s}.c-qty button:hover{background:var(--vm);color:#fff;border-color:var(--vm)}.c-ft{padding:20px;border-top:2px solid var(--bd)}.c-tot{display:flex;justify-content:space-between;font-family:var(--font-h);font-weight:900;margin-bottom:10px;font-size:1rem}.pix-n{background:#e8f5e9;color:var(--vm);font-size:.78rem;padding:9px 14px;border-radius:var(--r);margin-bottom:14px;display:flex;align-items:center;gap:6px;font-weight:700;border:1px solid rgba(0,100,0,.15)}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1a1a;color:#fff;padding:13px 28px;border-radius:50px;font-size:.85rem;font-family:var(--font-h);font-weight:700;z-index:300;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.3)}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}.toast.success{background:var(--vm)}.toast.error{background:#cc0000}
+.ph{background:linear-gradient(135deg,#001a00,#003300);padding:40px 20px;border-bottom:3px solid rgba(255,215,0,.2)}.ph h1{font-family:var(--font-h);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:#fff;margin-bottom:8px}.ph p{color:rgba(255,255,255,.65);font-size:.9rem}.brc{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:.78rem;color:rgba(255,255,255,.4)}.brc a{color:rgba(255,255,255,.6);transition:.2s}.brc a:hover{color:var(--am)}.brc .cur{color:var(--am);font-weight:700}
+@media(max-width:1024px){.pg{grid-template-columns:repeat(3,1fr)}.cats{grid-template-columns:repeat(3,1fr)}.ft-grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:repeat(2,1fr)}.steps::before{display:none}.tg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.hs{display:none}.hamburger{display:flex}.nav{display:none}.nav-mob{display:flex}.hero-in{grid-template-columns:1fr}.hp{display:none}.pg{grid-template-columns:repeat(2,1fr)}.cats{grid-template-columns:repeat(3,1fr)}.tg{grid-template-columns:1fr}.ft-grid{grid-template-columns:1fr}.banner-w img{max-height:220px;object-position:center top}.banner-mob{display:block}.trust-in{gap:16px}.hero{padding:40px 16px}}
+@media(max-width:480px){.pg{grid-template-columns:1fr 1fr}.cats{grid-template-columns:repeat(2,1fr)}.section{padding:44px 0}.hero{padding:32px 14px}.banner-w img{max-height:170px}.cd{gap:6px}.cd-block{min-width:68px;padding:10px 14px}.cd-num{font-size:1.7rem}.hero-ctas{flex-direction:column}.ann-track span{font-size:.7rem}}</style>
+</head><body>
+<style>
+body{background:linear-gradient(135deg,#001a00,#003300);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.ob{background:#fff;border-radius:var(--rxl);padding:48px 40px;max-width:560px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.ob-icon{font-size:5rem;margin-bottom:20px;animation:bounce .6s ease-in-out}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.ob-title{font-family:var(--font-h);font-size:1.8rem;font-weight:900;color:var(--vm);margin-bottom:10px}
+.ob-sub{font-size:.95rem;color:var(--txm);margin-bottom:24px;line-height:1.6}
+.ob-info{background:#e8f5e9;border:1px solid rgba(0,100,0,.2);border-radius:var(--rl);padding:20px;margin-bottom:24px;text-align:left}
+.ob-info-row{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid rgba(0,100,0,.1)}.ob-info-row:last-child{border:none;margin:0;padding:0}
+.ob-info-row span:first-child{color:var(--txm)}.ob-info-row strong{color:var(--pr);font-family:var(--font-h)}
+</style>
+</head><body>
+<div class="ob">
+  <div class="ob-icon">🎉</div>
+  <div class="ob-title">Pedido Confirmado!</div>
+  <p class="ob-sub">Seu pedido foi realizado com sucesso! Você receberá um e-mail de confirmação em breve com todos os detalhes.</p>
+  <div class="ob-info">
+    <div class="ob-info-row"><span>Número do Pedido:</span><strong>#CS-2026-4821</strong></div>
+    <div class="ob-info-row"><span>Status:</span><strong style="color:var(--vm)">✅ Confirmado</strong></div>
+    <div class="ob-info-row"><span>Previsão de envio:</span><strong>24–48 horas úteis</strong></div>
+    <div class="ob-info-row"><span>Entrega estimada:</span><strong>5–8 dias úteis</strong></div>
   </div>
-</header>
-
-<div style="min-height:80vh;display:flex;align-items:center;padding:60px 0;background:linear-gradient(180deg,#f0fff7 0%,var(--bg) 100%)">
-  <div class="container">
-    <div style="max-width:700px;margin:0 auto;text-align:center">
-
-      <div class="success-icon">
-        <i class="fas fa-check"></i>
-      </div>
-
-      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,153,77,.1);border:1px solid rgba(0,153,77,.2);border-radius:50px;padding:6px 16px;font-size:.8rem;color:var(--green);font-weight:700;font-family:var(--font-head);margin-bottom:16px">
-        <i class="fas fa-check-circle"></i> PEDIDO CONFIRMADO
-      </div>
-
-      <h1 style="font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:12px">
-        Uhul, <span class="obrigado-nome" style="color:var(--green)">torcedor</span>! Pedido recebido! 🎉
-      </h1>
-      <p style="color:var(--text-muted);font-size:1.05rem;margin-bottom:8px">
-        Obrigado pela sua compra! Já estamos preparando seu produto personalizado com todo carinho.
-      </p>
-
-      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;margin:32px 0;box-shadow:var(--shadow-sm)">
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)">
-          <div>
-            <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:4px">Número do pedido</div>
-            <div style="font-family:var(--font-head);font-weight:900;font-size:1.3rem;color:var(--green)" id="order-num">#CS-00000</div>
-          </div>
-          <div style="text-align:right">
-            <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:4px">Data do pedido</div>
-            <div style="font-family:var(--font-head);font-weight:700;font-size:.9rem" id="order-date">—</div>
-          </div>
-          <div style="text-align:right">
-            <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:4px">Status</div>
-            <span class="badge badge-green" style="font-size:.75rem;padding:4px 12px">
-              <i class="fas fa-clock"></i> Em produção
-            </span>
-          </div>
-        </div>
-
-        <!-- Itens do pedido preenchidos pelo JS -->
-        <div id="confirmed-items" style="text-align:left;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)"></div>
-
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <span style="font-size:.85rem;color:var(--text-muted)">Total do pedido:</span>
-          <strong id="confirmed-total" style="font-family:var(--font-head);font-size:1.1rem;color:var(--green)">—</strong>
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left;margin-top:16px">
-          <div>
-            <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">Entrega</div>
-            <div style="font-size:.9rem;font-weight:600">Previsão: 5–8 dias úteis</div>
-            <div style="font-size:.8rem;color:var(--text-muted);margin-top:4px">PAC — Correios</div>
-          </div>
-          <div>
-            <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">Personalização</div>
-            <div style="font-size:.9rem;font-weight:600">Aprovação em até 24h</div>
-            <div style="font-size:.8rem;color:var(--text-muted);margin-top:4px">Você receberá um preview por e-mail</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ORDER TIMELINE -->
-      <div class="order-steps">
-        <div class="order-step done">
-          <div class="step-icon-wrap"><i class="fas fa-check" style="color:var(--green)"></i></div>
-          <div class="step-title">Pedido Recebido</div>
-          <div class="step-desc">Confirmado agora</div>
-        </div>
-        <div class="order-step active">
-          <div class="step-icon-wrap"><i class="fas fa-magic" style="color:#1e88e5"></i></div>
-          <div class="step-title">Em Produção</div>
-          <div class="step-desc">Até 24–48h</div>
-        </div>
-        <div class="order-step pending">
-          <div class="step-icon-wrap"><i class="fas fa-box" style="color:var(--text-muted)"></i></div>
-          <div class="step-title">Enviado</div>
-          <div class="step-desc">Código de rastreio</div>
-        </div>
-        <div class="order-step pending">
-          <div class="step-icon-wrap"><i class="fas fa-home" style="color:var(--text-muted)"></i></div>
-          <div class="step-title">Entregue</div>
-          <div class="step-desc">Na sua porta!</div>
-        </div>
-      </div>
-
-      <!-- WHAT'S NEXT -->
-      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;margin-bottom:32px;text-align:left;box-shadow:var(--shadow-sm)">
-        <h3 style="margin-bottom:20px;text-align:center">📋 Próximos passos</h3>
-        <div style="display:flex;flex-direction:column;gap:16px">
-          <div style="display:flex;gap:14px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0">1</div>
-            <div>
-              <div style="font-weight:700;margin-bottom:4px">Confirmação por e-mail</div>
-              <div style="font-size:.85rem;color:var(--text-muted)">Você receberá um e-mail com todos os detalhes do pedido em alguns minutos.</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:14px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:50%;background:#1e88e5;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0">2</div>
-            <div>
-              <div style="font-weight:700;margin-bottom:4px">Aprovação do layout</div>
-              <div style="font-size:.85rem;color:var(--text-muted)">Em até 24h, enviaremos um preview da personalização para você aprovar antes de produzir.</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:14px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--dark);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0">3</div>
-            <div>
-              <div style="font-weight:700;margin-bottom:4px">Produção e envio</div>
-              <div style="font-size:.85rem;color:var(--text-muted)">Após aprovação, produzimos em até 48h e enviamos com código de rastreio.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CTA BUTTONS -->
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px">
-        <a href="https://wa.me/5563992795579" target="_blank" class="btn btn-primary btn-lg track-whatsapp">
-          <i class="fab fa-whatsapp"></i> Acompanhar pelo WhatsApp
-        </a>
-        <a href="produtos.html" class="btn btn-outline btn-lg">
-          <i class="fas fa-shopping-bag"></i> Continuar Comprando
-        </a>
-      </div>
-      <div style="text-align:center;margin-bottom:32px">
-        <span style="font-size:.78rem;color:var(--text-muted)">Ou fale com o Suporte 2: </span>
-        <a href="https://wa.me/5563991227871" target="_blank" class="track-whatsapp-2" style="color:var(--green);font-size:.78rem;font-weight:700">
-          <i class="fab fa-whatsapp"></i> +55 (63) 99122-7871
-        </a>
-      </div>
-
-      <!-- SOCIAL SHARE -->
-      <div style="background:linear-gradient(135deg,var(--dark),#0d2818);border-radius:var(--radius-lg);padding:28px;color:var(--white);margin-bottom:40px">
-        <div style="font-size:1.5rem;margin-bottom:8px">📸</div>
-        <h3 style="color:var(--white);margin-bottom:8px">Compartilhe sua compra!</h3>
-        <p style="color:rgba(255,255,255,.7);font-size:.9rem;margin-bottom:20px">
-          Marque a gente nas redes sociais quando receber seu produto. Compartilhe o amor pelo futebol! ⚽
-        </p>
-        <div style="display:flex;gap:10px;justify-content:center">
-          <a href="https://www.instagram.com/" target="_blank" class="btn btn-sm" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff">
-            <i class="fab fa-instagram"></i> @campeaostore
-          </a>
-          <a href="https://www.facebook.com/" target="_blank" class="btn btn-sm" style="background:#1877f2;color:#fff">
-            <i class="fab fa-facebook-f"></i> Facebook
-          </a>
-          <a href="https://wa.me/?text=Acabei de comprar na Campeão Store! Produtos personalizados de futebol incríveis 🏆⚽" target="_blank" class="btn btn-sm" style="background:#25d366;color:#fff">
-            <i class="fab fa-whatsapp"></i> WhatsApp
-          </a>
-        </div>
-      </div>
-
-    </div>
+  <p style="font-size:.85rem;color:var(--txm);margin-bottom:20px">Dúvidas? Fale conosco pelo WhatsApp:</p>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
+    <a href="https://wa.me/5563992795579" class="btn btn-v btn-bl" target="_blank"><i class="fab fa-whatsapp"></i> Suporte 1 — (63) 99279-5579</a>
+    <a href="https://wa.me/5563991227871" class="btn btn-v btn-bl" target="_blank"><i class="fab fa-whatsapp"></i> Suporte 2 — (63) 99122-7871</a>
+  </div>
+  <a href="index.html" class="btn btn-a btn-bl"><i class="fas fa-home"></i> Voltar para a Loja</a>
+  <div style="margin-top:20px;font-size:.75rem;color:var(--txm)">
+    <i class="fas fa-lock" style="color:var(--vm)"></i> Pagamento processado com segurança · SSL
   </div>
 </div>
-
-<!-- SUGGESTED PRODUCTS -->
-<div style="background:var(--white);padding:60px 0">
-  <div class="container">
-    <div class="section-title">
-      <span class="label">Aproveite e adicione mais</span>
-      <h2>Você também vai <span>amar</span></h2>
-      <div class="divider"></div>
-    </div>
-    <div class="products-grid">
-      <div class="product-card">
-        <a href="produto.html?id=5"><div class="product-img"><div class="product-img-bg bg-magica">✨</div><div class="product-badges"><span class="badge badge-red">Viral!</span></div></div></a>
-        <div class="product-info">
-          <div class="product-name">Caneca Mágica Muda de Cor</div>
-          <div class="product-pricing"><span class="price-old">R$ 69,90</span><span class="price-current">R$ 44,90</span></div>
-          <a href="produto.html?id=5" class="btn btn-primary"><i class="fas fa-magic"></i> Personalizar</a>
-        </div>
-      </div>
-      <div class="product-card">
-        <a href="produto.html?id=2"><div class="product-img"><div class="product-img-bg bg-copo">🥤</div><div class="product-badges"><span class="badge badge-gold">Top</span></div></div></a>
-        <div class="product-info">
-          <div class="product-name">Copo Térmico Stanley 473ml</div>
-          <div class="product-pricing"><span class="price-old">R$ 129,90</span><span class="price-current">R$ 89,90</span></div>
-          <a href="produto.html?id=2" class="btn btn-primary"><i class="fas fa-magic"></i> Personalizar</a>
-        </div>
-      </div>
-      <div class="product-card">
-        <a href="produto.html?id=8"><div class="product-img"><div class="product-img-bg bg-premium" style="font-size:3.5rem;flex-direction:column;gap:4px"><span>🏆</span><span>⚽</span></div><div class="product-badges"><span class="badge badge-gold">Premium</span></div></div></a>
-        <div class="product-info">
-          <div class="product-name">Kit Premium Copa 2026 — 4 Itens</div>
-          <div class="product-pricing"><span class="price-old">R$ 279,90</span><span class="price-current">R$ 199,90</span></div>
-          <a href="produto.html?id=8" class="btn btn-gold"><i class="fas fa-gift"></i> Ver Kit</a>
-        </div>
-      </div>
-      <div class="product-card">
-        <a href="produto.html?id=3"><div class="product-img"><div class="product-img-bg bg-taca">🏆</div><div class="product-badges"><span class="badge badge-green">Copa</span></div></div></a>
-        <div class="product-info">
-          <div class="product-name">Taça Personalizada Copa 500ml</div>
-          <div class="product-pricing"><span class="price-old">R$ 79,90</span><span class="price-current">R$ 49,90</span></div>
-          <a href="produto.html?id=3" class="btn btn-primary"><i class="fas fa-magic"></i> Personalizar</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-bottom">
-      <p>© 2026 Campeão Store. Todos os direitos reservados.</p>
-      <div class="payment-methods">
-        <span class="payment-badge">PIX</span>
-        <span class="payment-badge">Visa</span>
-        <span class="payment-badge">Master</span>
-        <span class="payment-badge">Boleto</span>
-      </div>
-      <div class="secured"><i class="fas fa-lock"></i> Site 100% Seguro</div>
-    </div>
-  </div>
-</footer>
-
-<div class="whatsapp-float" id="wa-float">
-  <div class="wa-options" id="wa-options">
-    <a href="https://wa.me/5563992795579" target="_blank" class="wa-option-link track-whatsapp">
-      <i class="fab fa-whatsapp"></i>
-      <div><div class="wa-opt-title">Suporte 1</div><div class="wa-opt-num">+55 (63) 99279-5579</div></div>
-    </a>
-    <a href="https://wa.me/5563991227871" target="_blank" class="wa-option-link track-whatsapp-2">
-      <i class="fab fa-whatsapp"></i>
-      <div><div class="wa-opt-title">Suporte 2</div><div class="wa-opt-num">+55 (63) 99122-7871</div></div>
-    </a>
-  </div>
-  <div class="whatsapp-pulse"></div>
-  <button class="wa-main-btn" onclick="toggleWA()">
-    <i class="fab fa-whatsapp"></i>
-    <span>Acompanhar pedido</span>
-  </button>
-</div>
-
+<div class="toast" id="toast"></div>
 <script>
-// Confetti (número do pedido e dados são preenchidos pelo app.js → initObrigado)
-
-// Confetti
-function spawnConfetti() {
-  const colors = ['#006633','#FFD700','#CC0000','#fff','#00994d','#e6c200'];
-  const shapes = ['circle','square'];
-  const container = document.getElementById('confetti');
-  for (let i = 0; i < 80; i++) {
-    const piece = document.createElement('div');
-    piece.className = 'confetti-piece';
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    const shape = shapes[Math.floor(Math.random() * shapes.length)];
-    const size = 6 + Math.random() * 8;
-    piece.style.cssText = `
-      left:${Math.random()*100}%;
-      width:${size}px; height:${size}px;
-      background:${color};
-      border-radius:${shape==='circle'?'50%':'2px'};
-      animation-duration:${2+Math.random()*3}s;
-      animation-delay:${Math.random()*2}s;
-      opacity:${0.7+Math.random()*0.3};
-    `;
-    container.appendChild(piece);
-    setTimeout(() => piece.remove(), 5000);
-  }
-}
-spawnConfetti();
-setTimeout(spawnConfetti, 1500);
+function showToast(msg,type=''){const t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.className='toast '+(type||'');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
 </script>
-<script src="js/app.js"></script>
-</body>
-</html>
+</body></html>
